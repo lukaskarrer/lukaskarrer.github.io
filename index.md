@@ -4,10 +4,11 @@ title: "Start"
 ---
 
 
-# Vorname Nachname — Mechatronik-Portfolio 🚀
+# Lukas Karrer — Mechatronik-Portfolio 🚀
 
 
-Ich bin Mechatronik-Student (TH/Uni) mit Fokus auf Prototyping, Embedded-Systeme, 3D‑Druck und KI. Hier findest du eine Auswahl meiner privaten und studentischen Projekte.
+Angehender Raumfahrt-Ingenieur mit dem Ziel, in der bemannten Raumfahrt tätig zu werden. Neben dem Studium setze ich praxisorientierte Projekte in 3D-Druck, Embedded-Systemen und KI um. 
+Hier findest du eine Auswahl meiner privaten und studentischen Projekte.
 
 
 ![Werkstatt](/assets/images/workshop.jpg){:style="max-width:100%;"}
@@ -16,9 +17,8 @@ Ich bin Mechatronik-Student (TH/Uni) mit Fokus auf Prototyping, Embedded-Systeme
 ## Kurzüberblick
 
 
-- **Techniken:** Embedded (Arduino/RPi), Python, C/C++, CAD (Fusion/Inventor/SolidWorks), 3D-Druck, Computer Vision, KI-APIs
-- **Aktuelle Projekte:** autonomes Prototyp-Setup, Indoor-Gewächshaus, KI-Literatur-Scanner
-
+- **Techniken:** Embedded (Arduino/RPi), Python, C, CAD, 3D-Druck, Computer Vision, KI-APIs
+- **Aktuelle Projekte:** autonomes Prototyp-Setup
 
 ## Projekte
 - [Smart-Garagenöffner mit Arduino](/projects/garage-opener/)
@@ -30,7 +30,6 @@ Ich bin Mechatronik-Student (TH/Uni) mit Fokus auf Prototyping, Embedded-Systeme
 ---
 
 
-Kontakt: `dein.email@example.com`
+Kontakt: `lukas.karrer26@gmail.com`
 
 
-(→ QR-Code für Lebenslauf: generiere einen QR-Code zu `https://USERNAME.github.io` und füge ihn in dein CV ein.)
