@@ -11,12 +11,12 @@ permalink: /werkstatt/
 Hier ein kurzer Überblick über meine Ausstattung, mit der ich die Projekte baue:
 
 
-- PC-Arbeitsstation (CAD + Simulation)
+- PC-Arbeitsstation (CAD + Simulation + Coding)
 - 3D-Drucker (FDM) + Ersatzfilamente
-- Lötstation, Multimeter, Oszilloskop-Basisausstattung
+- Lötstation, Multimeter
 - Raspberry Pi / Arduino Boards, Sensor-Kit
 
-
+![PC-Arbeitsstation](/assets/images/workstation.jpg){:style="max-width:48%;display:inline-block;"}
 ![3D-Drucker](/assets/images/3dprinter.jpg){:style="max-width:48%;display:inline-block;"}
 ![Lötplatz](/assets/images/soldering.jpg){:style="max-width:48%;display:inline-block;"}
 
