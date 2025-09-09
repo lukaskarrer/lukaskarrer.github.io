@@ -1,8 +1,8 @@
 title: "Vorname Nachname – Portfolio"
-email: "dein.email@example.com"
+email: "lukas.karrer26@gmail.com"
 description: "Mechatronik-Student | Prototyping, 3D-Druck, Embedded & KI"
 baseurl: "" # leave empty for user.github.io sites
-url: "https://USERNAME.github.io" # ersetze USERNAME
+url: "https://lukaskarrer.github.io" # ersetze USERNAME
 theme: minima
 plugins:
 - jekyll-feed
