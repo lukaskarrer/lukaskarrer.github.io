@@ -1,0 +1,16 @@
+title: "Vorname Nachname – Portfolio"
+email: "dein.email@example.com"
+description: "Mechatronik-Student | Prototyping, 3D-Druck, Embedded & KI"
+baseurl: "" # leave empty for user.github.io sites
+url: "https://USERNAME.github.io" # ersetze USERNAME
+theme: minima
+plugins:
+- jekyll-feed
+
+
+# optionale Navigation (einige themes nutzen das nicht; dann wird die Nav manuell in index angezeigt)
+# navigation:
+# - title: "Home"
+# url: "/"
+# - title: "Projekte"
+# url: "/projects/"
