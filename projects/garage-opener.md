@@ -11,6 +11,7 @@ Entwicklung eines Systems zur Signalübertragung und -analyse für DIY-Smart-Hom
 
 ## Umsetzung
 - Hardware: Arduino, CC1101-Funkmodule, Antennen
+- Software: Arduino UNO, Universal Radio Hacker
 - Integration: Lötarbeiten, Verkabelung, Smartphone als Steuerinterface
 - Fokus: Funkkommunikation, Protokollanalyse, Zuverlässigkeit
 
