@@ -30,6 +30,6 @@ Hier findest du eine Auswahl meiner privaten und studentischen Projekte.
 ---
 
 
-Kontakt: `lukas.karrer26@gmail.com`
+
 
 
