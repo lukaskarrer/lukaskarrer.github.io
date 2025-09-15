@@ -23,13 +23,13 @@ Python, GitHub Actions, OpenAI GPT-3.5-Turbo (API), SMTP / Mail-API
 ## Ergebnis & Proof
 - Automatisierter Workflow 
 - Beispiel-Ausgabe
-<br><br><br><br>
+<br><br>
 ![Github-Overview](/assets/images/screenshot_github.PNG)
 <br><br><br><br>
 ![Code-Snippet](/assets/images/screenshot_code.PNG)
 <br><br><br><br>
 ![E-Mail-Beispiel](/assets/images/screenshot_email.PNG)
-<br><br><br><br>
+<br><br>
 
 
 [← Zurück zur Startseite](/)
