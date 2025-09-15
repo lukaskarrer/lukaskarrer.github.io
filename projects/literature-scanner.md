@@ -21,11 +21,13 @@ Python, GitHub Actions, OpenAI GPT-3.5-Turbo (API), SMTP / Mail-API
 
 
 ## Ergebnis & Proof
-- Automatisierter Workflow (siehe Repo)
-- Beispiel-Ausgabe (Beispiel-CSV / HTML-Summary)
+- Automatisierter Workflow 
+- Beispiel-Ausgabe
+ 
+![Github-Overview](../assets/images/projects/literature-scanner/screenshot_github.PNG)
+![Code-Snippet](../assets/images/projects/literature-scanner/screenshot_code.PNG)
+![E-Mail-Beispiel](../assets/images/projects/literature-scanner/screenshot_email.PNG)
 
-
-[→ GitHub-Repo mit Skripten](https://github.com/USERNAME/literature-scanner)
 
 
 [← Zurück zur Startseite](/)
