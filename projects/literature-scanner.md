@@ -25,7 +25,9 @@ Python, GitHub Actions, OpenAI GPT-3.5-Turbo (API), SMTP / Mail-API
 - Beispiel-Ausgabe
  
 ![Github-Overview](/assets/images/screenshot_github.PNG)
+
 ![Code-Snippet](/assets/images/screenshot_code.PNG)
+
 ![E-Mail-Beispiel](/assets/images/screenshot_email.PNG)
 
 
