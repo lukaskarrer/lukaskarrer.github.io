@@ -16,7 +16,13 @@ Hier ein kurzer Überblick über meine Ausstattung, mit der ich die Projekte bau
 - Lötstation, Multimeter
 - Raspberry Pi / Arduino Boards, Sensor-Kit
 
-![PC-Arbeitsstation](/assets/images/workstation.jpg){:style="max-width:48%;display:inline-block;"}
+
+<br><br>
+![PC-Arbeitsstation](/assets/images/workshop_far.jpg)
+<br><br><br><br>
+![PC-Arbeitsstation-CloseUp](/assets/images/workshop_closeup.jpg)
+<br><br><br><br>
+
 ![3D-Drucker](/assets/images/3dprinter.jpg){:style="max-width:48%;display:inline-block;"}
 ![Lötplatz](/assets/images/soldering.jpg){:style="max-width:48%;display:inline-block;"}
 
