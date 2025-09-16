@@ -4,7 +4,7 @@ title: ""
 
 
 ---
-<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+
 
 # Portfolio 🚀
 
@@ -28,6 +28,8 @@ Hier findest du eine Auswahl meiner privaten und studentischen Projekte.
 - [Indoor-Gewächshaus (Schienensystem)](/projects/indoor-greenhouse/)
 - [Automatisiertes Insektenabwehr-System](/projects/insect-defence/)
 
+<link rel="stylesheet" href="{{ '/assets/css/custom-hamburger.css' | relative_url }}">
+<script src="{{ '/assets/js/custom-hamburger.js' | relative_url }}"></script>
 
 ---
 
