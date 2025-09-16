@@ -19,9 +19,9 @@ n8n, Seedance AI, Hetzner Cloud, Python, OpenAI, ReplicateAI
 ## Ergebnis & Proof
 - Live-Workflow auf eigenem Server
 - Beispielvideos auf YouTube
-
+<br>
 ![Github-Overview](/assets/images/picture_n8n_1.PNG)
-<br><br>
+<br>
 ![Github-Overview](/assets/images/picture_n8n_2.PNG)
 <br>
 
