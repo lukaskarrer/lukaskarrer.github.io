@@ -29,6 +29,8 @@ Hier findest du eine Auswahl meiner privaten und studentischen Projekte.
 - [Raketenprototyp aus Edelstahl](/projects/starship-prototype/)
 - [3D-Druckprojekte mit Elegoo Neptune 4](/projects/3d-printing/)
 
+## Werkstatt und Arbeitsplatz
+- [werkstatt](/werkstatt/)
 ---
 
 
