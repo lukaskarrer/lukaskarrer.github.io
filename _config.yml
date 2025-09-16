@@ -1,16 +1,16 @@
 title: ""
 email: "lukas.karrer26@gmail.com"
 description: "Angehender Raumfahrt-Ingenieur | Prototyping, 3D-Druck, Embedded & KI"
-baseurl: "" # leave empty for user.github.io sites
-url: "https://lukaskarrer.github.io" # ersetze USERNAME
+baseurl: ""
+url: "https://lukaskarrer.github.io"
 theme: minima
 plugins:
-- jekyll-feed
+  - jekyll-feed
 
-
-# optionale Navigation (einige themes nutzen das nicht; dann wird die Nav manuell in index angezeigt)
-# navigation:
-# - title: "Home"
-# url: "/"
-# - title: "Projekte"
-# url: "/projects/"
+navigation:
+  - title: "Start"
+    url: "/"
+  - title: "Projekte"
+    url: "/projects/"
+  - title: "Werkstatt & Tools"
+    url: "/werkstatt/"
