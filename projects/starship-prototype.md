@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Miniatur-Raketenprototyp aus Edelstahl"
+title: "Raketenprototyp aus Edelstahl"
 permalink: /projects/starship-prototype/
 ---
 
