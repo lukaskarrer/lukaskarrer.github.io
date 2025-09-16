@@ -1,8 +1,6 @@
 ---
 layout: default
-title: ""
-
-
+title: "a"
 ---
 
 
