@@ -1,66 +1,104 @@
 // assets/js/custom-hamburger.js
 document.addEventListener('DOMContentLoaded', function () {
-  // Suche Header und Navigation (robust)
   var header = document.querySelector('.site-header') || document.querySelector('header') || document.body;
-  // mögliche Nav-Varianten prüfen:
-  var nav = document.querySelector('.site-nav') || document.querySelector('nav.site-nav') || document.querySelector('nav') || document.querySelector('header nav') || document.querySelector('ul');
+  if (!header) return;
 
-  if (!header || !nav) {
-    console.log('custom-hamburger: Header oder nav nicht gefunden.');
-    return;
+  // Erzeuge Button, falls noch nicht vorhanden
+  if (!document.querySelector('.custom-hamburger-btn')) {
+    var btn = document.createElement('button');
+    btn.className = 'custom-hamburger-btn';
+    btn.innerHTML = '&#9776;'; // ☰
+    btn.setAttribute('aria-label','Menü öffnen');
+    header.appendChild(btn);
+  } else {
+    var btn = document.querySelector('.custom-hamburger-btn');
   }
 
-  // Falls nav ein <nav> enthält ein <ul>, dann benutzen wir das UL für die show-Klasse
-  var innerNav = nav.querySelector('ul') || nav.querySelector('ol') || nav;
-  // Entferne leere LIs (Whitespace-only)
-  try {
-    var items = Array.prototype.slice.call(innerNav.querySelectorAll('li'));
-    items.forEach(function(li){
-      if (!li.textContent || li.textContent.trim().length === 0) {
-        li.parentNode.removeChild(li);
+  // Erzeuge Menü-Container
+  var menu = document.querySelector('.custom-hamburger-menu');
+  if (!menu) {
+    menu = document.createElement('div');
+    menu.className = 'custom-hamburger-menu';
+    header.appendChild(menu);
+  }
+
+  // Funktion: sammle Navigationseinträge aus existierender Nav oder baue aus Links auf der Seite
+  function buildMenu() {
+    var sourceNav = document.querySelector('.site-nav') || document.querySelector('nav') || document.querySelector('header nav') || document.querySelector('ul');
+    var items = [];
+    if (sourceNav) {
+      // falls UL/OL vorhanden, nimm LIs
+      var ul = sourceNav.querySelector('ul') || sourceNav.querySelector('ol') || sourceNav;
+      var lis = Array.prototype.slice.call(ul.querySelectorAll('li'));
+      if (lis.length === 0) {
+        // falls nav direkt aus <a>-links besteht
+        var links = ul.querySelectorAll('a');
+        links.forEach(function(a){
+          items.push({text: a.textContent.trim(), href: a.getAttribute('href')});
+        });
       } else {
-        // trim excess whitespace nodes inside
-        li.innerHTML = li.innerHTML.trim();
+        lis.forEach(function(li){
+          var a = li.querySelector('a');
+          if (a) {
+            var text = a.textContent.trim();
+            var href = a.getAttribute('href');
+            // skip empty or purely whitespace entries
+            if (!text || text.length === 0) return;
+            items.push({text: text, href: href});
+          }
+        });
       }
+    } else {
+      // fallback: suche alle sichtbaren interne Links in header/main that look like nav
+      var links = document.querySelectorAll('a[href^="/"], a[href^="./"], a[href^="#"]');
+      links.forEach(function(a){
+        var text = a.textContent.trim();
+        if (!text) return;
+        items.push({text: text, href: a.getAttribute('href')});
+      });
+    }
+
+    // dedupe items by text (case-insensitive) and remove links that are only "/"
+    var seen = {};
+    var filtered = [];
+    items.forEach(function(it){
+      var t = it.text.trim().toLowerCase();
+      if (!t) return;
+      if (it.href === '/' && t.length === 0) return;
+      if (!seen[t]) { seen[t] = true; filtered.push(it); }
     });
-  } catch (e) {
-    // ignore if structure unexpected
+
+    // baue HTML
+    var html = '<ul>';
+    filtered.forEach(function(it){
+      // sanitize href: if null -> '#'
+      var href = it.href || '#';
+      html += '<li><a href="'+href+'">'+it.text+'</a></li>';
+    });
+    html += '</ul>';
+    menu.innerHTML = html;
   }
 
-  // Falls Button schon existiert: nichts tun
-  if (document.querySelector('.hamburger-btn')) return;
+  // initial build
+  buildMenu();
 
-  // Erzeuge Button
-  var btn = document.createElement('button');
-  btn.className = 'hamburger-btn';
-  btn.setAttribute('aria-label', 'Menü öffnen');
-  btn.setAttribute('aria-expanded', 'false');
-  btn.innerHTML = '&#9776;'; // ☰
-
-  // Anfügen: ins header (appendChild = am Ende)
-  header.appendChild(btn);
-
-  // Klick: togglet .show an der innerNav (UL/OL/Nav)
-  btn.addEventListener('click', function (ev) {
-    ev.stopPropagation();
-    var shown = innerNav.classList.toggle('show');
-    btn.setAttribute('aria-expanded', shown ? 'true' : 'false');
+  // Klick toggled das Menü
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    menu.classList.toggle('show');
   });
 
-  // Klick außerhalb schließt das Menü
-  document.addEventListener('click', function (e) {
-    if (!innerNav.classList.contains('show')) return;
-    if (e.target === btn) return;
-    if (innerNav.contains(e.target)) return;
-    innerNav.classList.remove('show');
-    btn.setAttribute('aria-expanded', 'false');
+  // Klick außerhalb schließt
+  document.addEventListener('click', function(e){
+    if (!menu.classList.contains('show')) return;
+    if (menu.contains(e.target) || btn.contains(e.target)) return;
+    menu.classList.remove('show');
   });
 
-  // Optional: Escape schließt
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && innerNav.classList.contains('show')) {
-      innerNav.classList.remove('show');
-      btn.setAttribute('aria-expanded', 'false');
-    }
+  // beobachte DOM-Mutationen (falls theme nav später nachlädt), rebuild falls nötig
+  var obs = new MutationObserver(function(muts){
+    // rebuild ungefähr einmal nach Änderungen
+    buildMenu();
   });
+  obs.observe(document.body, {childList: true, subtree: true});
 });
