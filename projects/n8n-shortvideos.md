@@ -10,7 +10,7 @@ Automatisierte Erstellung von 30-Sekunden-Shortvideos aus Texteingaben – Workf
 ## Umsetzung
 - Workflow: n8n auf Hetzner-Server gehostet
 - KI-Integration: Seedance AI (Szenen & Voiceovers)
-- Automatisierung: Textprompt → Videoerstellung (Skripte, Szenen, Audio)
+- Automatisierung: Textprompt (GPT-4o mini) → Videoerstellung (Skripte, Szenen, Audio)
 - Output: fertige Shortvideos inkl. Upload
 
 ## Technologien
