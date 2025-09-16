@@ -21,7 +21,7 @@ WIG-Schweißen, Edelstahl, Metallbearbeitung
 
 ![Github-Overview](/assets/images/picture_welding.JPG)
 <br><br>
-![Github-Overview](/assets/images/picture_halfdone.JPG)
+![Github-Overview](/assets/images/picture_halfdone.jpg)
 <br><br>
 ![Github-Overview](/assets/images/picture_starship.JPG)
 <br><br>
