@@ -11,7 +11,7 @@ Angehender Raumfahrt-Ingenieur mit dem Ziel, in der bemannten Raumfahrt tätig z
 Hier findest du eine Auswahl meiner privaten und studentischen Projekte.
 
 
-![Werkstatt](/assets/images/workshop.JPG){:style="max-width:100%;"}
+
 
 
 ## Kurzüberblick
