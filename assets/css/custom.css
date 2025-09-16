@@ -1,7 +1,0 @@
-/* immer mobile Hamburger-Navigation erzwingen */
-.site-nav {
-  display: none !important;   /* Links oben ausblenden */
-}
-.nav-trigger {
-  display: block !important;  /* Hamburger-Icon immer zeigen */
-}
