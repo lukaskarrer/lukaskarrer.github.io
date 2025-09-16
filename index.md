@@ -27,6 +27,7 @@ Hier findest du eine Auswahl meiner privaten und studentischen Projekte.
 - [Automatisierte Kurzvideo-Generierung mit n8n](/projects/n8n-shortvideos/)
 - [Automatisiertes Insektenabwehr-System](/projects/insect-defence/)
 - [Raketenprototyp aus Edelstahl](/projects/starship-prototype/)
+- [3D-Druckprojekte mit Elegoo Neptune 4](/projects/3d-printing/)
 
 ---
 
