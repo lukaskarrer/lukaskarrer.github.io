@@ -2,15 +2,31 @@ title: ""
 email: "lukas.karrer26@gmail.com"
 description: "Angehender Raumfahrt-Ingenieur | Prototyping, 3D-Druck, Embedded & KI"
 baseurl: "" # leave empty for user.github.io sites
-url: "https://lukaskarrer.github.io" # ersetze USERNAME
+url: "https://lukaskarrer.github.io"
 theme: minima
 plugins:
-- jekyll-feed
+  - jekyll-feed
 
-
-# optionale Navigation (einige themes nutzen das nicht; dann wird die Nav manuell in index angezeigt)
-# navigation:
-# - title: "Home"
-# url: "/"
-# - title: "Projekte"
-# url: "/projects/"
+# Navigation mit Dropdown für Projekte
+navigation:
+  - title: "Start"
+    url: "/"
+  - title: "Projekte"
+    url: "#"
+    children:
+      - title: "Smart-Garagenöffner mit Arduino"
+        url: "/projects/garage-opener/"
+      - title: "Indoor-Gewächshaus mit Schienensystem"
+        url: "/projects/indoor-garden/"
+      - title: "Automatisiertes Insektenabwehr-System"
+        url: "/projects/insektenabwehr/"
+      - title: "KI-gestützter Literatur-Scanner"
+        url: "/projects/literature-scanner/"
+      - title: "Automatisierte Kurzvideo-Generierung mit n8n"
+        url: "/projects/n8n-shortvideos/"
+      - title: "Miniatur-Raketenprototyp aus Edelstahl"
+        url: "/projects/starship-prototype/"
+      - title: "3D-Druckprojekte mit Elegoo Neptune 4"
+        url: "/projects/3d-printing/"
+  - title: "Werkstatt & Tools"
+    url: "/werkstatt/"
