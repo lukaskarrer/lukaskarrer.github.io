@@ -22,5 +22,14 @@ Design und Fertigung von individuellen 3D-Teilen für den praktischen Einsatz: T
   - Individueller Türgriff für Mückengitter CAD/Bild
   - Wasserhahn-Adapter CAD/Bild
 
+![Github-Overview](/assets/images/screenshot_Griff_CAD.JPG)
+<br><br>
+![Github-Overview](/assets/images/screenshot_Griff.JPG)
+<br><br>
+![Github-Overview](/assets/images/screenshot_Wasserhahn-Adapter_CAD.JPG)
+<br><br>
+![Github-Overview](/assets/images/screenshot_Wasserhahn-Adapter.JPG)
+<br><br>
+
 
 [← Zurück zur Startseite](/)
