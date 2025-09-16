@@ -1,11 +1,11 @@
 /* assets/css/custom-hamburger.css */
-/* Positioniere Hamburger rechts oben, reduziere Abstände im Menü */
 
-.site-header {
-  position: relative; /* damit der absolute Button sich auf den Header bezieht */
+/* 1) sicherstellen, dass Header als Bezugspunkt fungiert */
+.site-header, header {
+  position: relative;
 }
 
-/* Hamburger-Button: rechts oben */
+/* 2) Hamburger rechts oben */
 .hamburger-btn {
   position: absolute;
   top: 10px;
@@ -18,60 +18,77 @@
   background: transparent;
   border: none;
   color: inherit;
-  z-index: 50;
+  z-index: 2000;
 }
 
-/* Standard: nav ausblenden (wir steuern Sichtbarkeit per .show) */
-.site-nav {
+/* 3) Standard: nav ausblenden (wir togglen .show) */
+.site-nav,
+nav.site-nav,
+nav > ul,
+nav > ol {
   display: none !important;
   margin: 0 !important;
   padding: 0 !important;
-  list-style: none;
-  background: transparent; /* transparent oder setze eine Farbe */
+  list-style: none !important;
 }
 
-/* Wenn .show gesetzt wird, sichtbar (kompakte Darstellung) */
-.site-nav.show {
+/* 4) Wenn sichtbar: kompakt und einspaltig */
+.site-nav.show,
+nav.site-nav.show,
+nav > ul.show,
+nav > ol.show {
   display: block !important;
-  margin-top: 8px !important;
+  margin: 0 !important;
   padding: 6px 12px !important;
-  border-radius: 4px;
-  /* optional: leichter Hintergrund, wenn du willst:
-  background: rgba(0,0,0,0.03); */
+  max-width: 320px;
+  background: rgba(255,255,255,0.98);
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
 }
 
-/* Menüeinträge: kompakt und ohne extra Gaps */
-.site-nav a,
-.site-nav li {
-  display: block;
+/* 5) Menüeinträge: keine doppelten Abstände, kompakt */
+.site-nav li,
+nav.site-nav li,
+nav > ul li,
+nav > ol li {
   margin: 0 !important;
-  padding: 6px 0 !important; /* Abstand zwischen Einträgen */
+  padding: 6px 0 !important;
   line-height: 1.2;
+  display: block;
+}
+
+/* Link-Style innerhalb der Items */
+.site-nav a,
+nav.site-nav a {
+  display: block;
+  padding: 4px 0;
+  margin: 0;
   text-decoration: none;
   color: inherit;
 }
 
-/* Entferne große Margins, die Themes manchmal haben */
-.site-nav li > a {
-  margin: 0 !important;
-  padding: 6px 0 !important;
-}
-
-/* kleine Trennlinie optional */
+/* dezente Trennung zwischen Items (optional) */
 .site-nav li + li {
   border-top: 1px solid rgba(0,0,0,0.06);
-  padding-top: 8px;
-  margin-top: 8px;
+  margin-top: 6px !important;
+  padding-top: 8px !important;
 }
 
-/* Desktop: wenn du möchtest, dass das Menü an denselben Ort wie mobil aufgeht,
-   kannst du die Breite beschränken (optional) */
-.site-nav.show {
-  max-width: 260px;
+/* Entferne sichtbare <br> innerhalb der Nav (falls theme welche einfügt) */
+.site-nav br,
+nav.site-nav br {
+  display: none !important;
 }
 
-/* Fallback: falls dein theme nav in einem anderen Tag liegt (z.B. nav ul) */
-nav.site-nav,
-nav .site-nav {
-  /* gleiche Regeln gelten */
+/* Verberge echte leere Listenelemente */
+.site-nav li:empty,
+nav.site-nav li:empty {
+  display: none !important;
 }
+
+/* Fallback: wenn nav als <ul> direkt ohne class vorliegt */
+ul.site-nav,
+ul.show {
+  display: block !important;
+}
+
