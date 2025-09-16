@@ -1,36 +1,77 @@
 /* assets/css/custom-hamburger.css */
-/* Zeigt/verbirgt die normale Navigation und stylt den Hamburger-Button */
+/* Positioniere Hamburger rechts oben, reduziere Abstände im Menü */
 
+.site-header {
+  position: relative; /* damit der absolute Button sich auf den Header bezieht */
+}
+
+/* Hamburger-Button: rechts oben */
 .hamburger-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
   display: inline-block;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1;
   padding: 6px 10px;
   background: transparent;
   border: none;
-  margin-right: 8px;
   color: inherit;
+  z-index: 50;
 }
 
 /* Standard: nav ausblenden (wir steuern Sichtbarkeit per .show) */
 .site-nav {
   display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none;
+  background: transparent; /* transparent oder setze eine Farbe */
 }
 
-/* Wenn .show gesetzt wird, sichtbar */
+/* Wenn .show gesetzt wird, sichtbar (kompakte Darstellung) */
 .site-nav.show {
   display: block !important;
+  margin-top: 8px !important;
+  padding: 6px 12px !important;
+  border-radius: 4px;
+  /* optional: leichter Hintergrund, wenn du willst:
+  background: rgba(0,0,0,0.03); */
+}
+
+/* Menüeinträge: kompakt und ohne extra Gaps */
+.site-nav a,
+.site-nav li {
+  display: block;
+  margin: 0 !important;
+  padding: 6px 0 !important; /* Abstand zwischen Einträgen */
+  line-height: 1.2;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Entferne große Margins, die Themes manchmal haben */
+.site-nav li > a {
+  margin: 0 !important;
+  padding: 6px 0 !important;
+}
+
+/* kleine Trennlinie optional */
+.site-nav li + li {
+  border-top: 1px solid rgba(0,0,0,0.06);
+  padding-top: 8px;
   margin-top: 8px;
 }
 
-/* kleine optische Regeln, damit das Menü schön aussieht */
-.site-nav a {
-  display: block;
-  padding: 6px 0;
+/* Desktop: wenn du möchtest, dass das Menü an denselben Ort wie mobil aufgeht,
+   kannst du die Breite beschränken (optional) */
+.site-nav.show {
+  max-width: 260px;
 }
 
-/* Optional: schmalere Darstellung (keine Änderungen an Desktop-Layout nötig) */
-@media (min-width: 900px) {
-  /* nichts nötig — wir erzwingen mobile-Ansicht überall durch JS/CSS oben */
+/* Fallback: falls dein theme nav in einem anderen Tag liegt (z.B. nav ul) */
+nav.site-nav,
+nav .site-nav {
+  /* gleiche Regeln gelten */
 }
