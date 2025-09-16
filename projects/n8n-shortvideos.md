@@ -20,9 +20,11 @@ n8n, Seedance AI, Hetzner Cloud, Python, ffmpeg
 - Live-Workflow auf eigenem Server
 - Beispielvideos auf YouTube
 
-![Github-Overview](/assets/images/screenshot_.PNG)
+![Github-Overview](/assets/images/picture_n8n_1_.PNG)
+<br><br>
+![Github-Overview](/assets/images/picture_n8n_2_.PNG)
 <br><br>
 
-[→ YouTube-Kanal mit Demo-Videos](https://DEIN_LINK_ZUM_KANAL)
+[→ YouTube-Kanal mit Demo-Videos](https://www.youtube.com/@historyfactsguy)
 
 [← Zurück zur Startseite](/)
