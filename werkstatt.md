@@ -17,17 +17,17 @@ Hier ein kurzer Überblick über meine Ausstattung, mit der ich die Projekte bau
 - Raspberry Pi / Arduino Boards, Sensor-Kit
 
 
-<br><br>
+<br>
 ![PC-Arbeitsstation](/assets/images/workshop_far.JPG)
-<br><br><br><br>
+<br><br>
 ![PC-Arbeitsstation-CloseUp](/assets/images/workshop_closeup.JPG)
-<br><br><br><br>
+<br><br>
 
 ![3D-Drucker](/assets/images/3dprinter.jpg){:style="max-width:48%;display:inline-block;"}
 ![Lötplatz](/assets/images/soldering.jpg){:style="max-width:48%;display:inline-block;"}
 
 
-Mehr Bilder und kurze Notizen zu typischen Workflows folgen hier.
+
 
 
 [← Zurück zur Startseite](/)
