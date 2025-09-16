@@ -24,6 +24,7 @@ Hier findest du eine Auswahl meiner privaten und studentischen Projekte.
 - [Smart-Garagenöffner mit Arduino](/projects/garage-opener/)
 - [KI-gestützter Literatur-Scanner](/projects/literature-scanner/)
 - [Indoor-Gewächshaus (Schienensystem)](/projects/indoor-greenhouse/)
+- [Automatisierte Kurzvideo-Generierung mit n8n](/projects/n8n-shortvideos/)
 - [Automatisiertes Insektenabwehr-System](/projects/insect-defence/)
 - [Miniatur-Raketenprototyp aus Edelstahl](/projects/starship-prototype/)
 
