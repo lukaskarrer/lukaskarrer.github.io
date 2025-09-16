@@ -1,0 +1,36 @@
+/* assets/css/custom-hamburger.css */
+/* Zeigt/verbirgt die normale Navigation und stylt den Hamburger-Button */
+
+.hamburger-btn {
+  display: inline-block;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+  padding: 6px 10px;
+  background: transparent;
+  border: none;
+  margin-right: 8px;
+  color: inherit;
+}
+
+/* Standard: nav ausblenden (wir steuern Sichtbarkeit per .show) */
+.site-nav {
+  display: none !important;
+}
+
+/* Wenn .show gesetzt wird, sichtbar */
+.site-nav.show {
+  display: block !important;
+  margin-top: 8px;
+}
+
+/* kleine optische Regeln, damit das Menü schön aussieht */
+.site-nav a {
+  display: block;
+  padding: 6px 0;
+}
+
+/* Optional: schmalere Darstellung (keine Änderungen an Desktop-Layout nötig) */
+@media (min-width: 900px) {
+  /* nichts nötig — wir erzwingen mobile-Ansicht überall durch JS/CSS oben */
+}
