@@ -1,13 +1,16 @@
 ---
 ---
 
-/* zuerst das Standard-Theme laden */
 @import "minima";
 
-/* dann unsere Änderungen */
-.site-nav {
-  display: none !important;   /* Links oben ausblenden */
-}
-.nav-trigger {
-  display: block !important;  /* Hamburger immer zeigen */
+/* Breakpoint entfernen: erzwinge mobile Menü auch am Desktop */
+@media screen and (min-width: 0px) {
+  .site-header .trigger {
+    display: none;
+  }
+
+  .site-header .nav-trigger,
+  .site-header label[for="nav-trigger"] {
+    display: block;
+  }
 }
