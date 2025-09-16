@@ -23,7 +23,7 @@ Konzept und Prototyp für ein Indoor-Gewächshaus, bei dem Pflanzschalen auf 3D-
 - Konzeptzeichnungen, Prototyp-Fotos, APK / App-Screenshots
 
 
-[→ Repo mit CAD / App-Code](https://github.com/USERNAME/indoor-greenhouse)
+
 
 
 [← Zurück zur Startseite](/)
