@@ -14,7 +14,7 @@ Automatisierte Erstellung von 30-Sekunden-Shortvideos aus Texteingaben – Workf
 - Output: fertige Shortvideos inkl. Upload
 
 ## Technologien
-n8n, Seedance AI, Hetzner Cloud, Python, ffmpeg
+n8n, Seedance AI, Hetzner Cloud, Python, OpenAI, ReplicateAI
 
 ## Ergebnis & Proof
 - Live-Workflow auf eigenem Server
