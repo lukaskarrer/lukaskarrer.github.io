@@ -30,7 +30,7 @@ Hier findest du eine Auswahl meiner privaten und studentischen Projekte.
 - [3D-Druckprojekte mit Elegoo Neptune 4](/projects/3d-printing/)
 
 ## Werkstatt und Arbeitsplatz
-- [Tüftelkeller](/werkstatt/)
+- [Werkstatt](/werkstatt/)
 ---
 
 
