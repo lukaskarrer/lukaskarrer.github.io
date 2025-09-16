@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: "Werkstatt & Tools"
 permalink: /werkstatt/
 ---
@@ -31,6 +31,3 @@ Mehr Bilder und kurze Notizen zu typischen Workflows folgen hier.
 
 
 [← Zurück zur Startseite](/)
-
-<link rel="stylesheet" href="{{ '/assets/css/custom-hamburger.css' | relative_url }}">
-<script src="{{ '/assets/js/custom-hamburger.js' | relative_url }}"></script>
