@@ -1,0 +1,13 @@
+---
+---
+
+/* zuerst das Standard-Theme laden */
+@import "minima";
+
+/* dann unsere Änderungen */
+.site-nav {
+  display: none !important;   /* Links oben ausblenden */
+}
+.nav-trigger {
+  display: block !important;  /* Hamburger immer zeigen */
+}
