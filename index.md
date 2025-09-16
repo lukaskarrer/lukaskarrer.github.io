@@ -25,7 +25,7 @@ Hier findest du eine Auswahl meiner privaten und studentischen Projekte.
 - [KI-gestützter Literatur-Scanner](/projects/literature-scanner/)
 - [Indoor-Gewächshaus (Schienensystem)](/projects/indoor-greenhouse/)
 - [Automatisiertes Insektenabwehr-System](/projects/insect-defence/)
-
+- [Miniatur-Raketenprototyp aus Edelstahl](/projects/starship-prototype/)
 
 ---
 
