@@ -13,8 +13,8 @@ Hier ein kurzer Überblick über meine Ausstattung, mit der ich die Projekte bau
 
 - PC-Arbeitsstation (CAD + Simulation + Coding)
 - 3D-Drucker (FDM) + Ersatzfilamente
-- Lötstation, Multimeter
-- Raspberry Pi / Arduino Boards, Sensor-Kit
+- Lötstation 
+- Raspberry Pi / Arduino Boards
 
 
 <br>
