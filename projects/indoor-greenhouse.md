@@ -6,7 +6,7 @@ permalink: /projects/indoor-greenhouse/
 
 
 ## Idee & Ziel
-Konzept und Prototyp für ein Indoor-Gewächshaus, bei dem Pflanzschalen auf 3D-gedruckten Schienen verschoben werden, um optimale Licht- und Temperaturbedingungen zu erreichen.
+Konzept für ein Indoor-Gewächshaus, bei dem Pflanzschalen auf 3D-gedruckten Schienen verschoben werden, um optimale Licht- und Temperaturbedingungen zu erreichen.
 
 
 ## Umsetzung
@@ -19,7 +19,7 @@ Konzept und Prototyp für ein Indoor-Gewächshaus, bei dem Pflanzschalen auf 3D-
 3D-Druck, JavaFX (Scene Builder), Mikrocontroller, Sensorik
 
 
-## Ergebnis & Proof
+## Ergebnis & Proof (Nur Logik und GUI umgesetzt)
 - Inhaltsverzechnis Code, Programmablaufplan, App-Screenshots
 <br>
 
