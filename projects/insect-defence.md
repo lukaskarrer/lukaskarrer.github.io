@@ -23,7 +23,7 @@ Raspberry Pi, OpenCV, Python, 3D-gedruckte Halterungen, Servos
 - Prototyp-Fotos, Demo-Video, Codebeispiele
 
 
-[→ GitHub-Repo mit Code & Dokumentation](https://github.com/USERNAME/insect-defence)
+
 
 
 [← Zurück zur Startseite](/)
