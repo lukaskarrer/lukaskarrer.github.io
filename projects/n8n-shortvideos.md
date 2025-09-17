@@ -23,8 +23,8 @@ n8n, Seedance AI, Hetzner Cloud, Python, OpenAI, ReplicateAI
 ![Github-Overview](/assets/images/picture_n8n_1.PNG)
 <br>
 ![Github-Overview](/assets/images/picture_n8n_2.PNG)
-<br>
+<br><br>
 
 [→ YouTube-Kanal mit Demo-Videos](https://www.youtube.com/@historyfactsguy)
-<br><br>
+<br><br><br>
 [← Zurück zur Startseite](/)
