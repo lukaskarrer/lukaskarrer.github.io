@@ -5,7 +5,7 @@ permalink: /projects/n8n-shortvideos/
 ---
 
 ## Ziel
-Automatisierte Erstellung von 30-Sekunden-Shortvideos aus Texteingaben – Workflow für Social Media / Content-Automation.
+Automatisierte Erstellung von Shortvideos aus Texteingaben – Workflow für Content-Automation.
 
 ## Umsetzung
 - Workflow: n8n auf Hetzner-Server gehostet
@@ -19,7 +19,7 @@ n8n, Seedance AI, Hetzner Cloud, Python, OpenAI, ReplicateAI
 ## Ergebnis & Proof
 - Live-Workflow auf eigenem Server
 - Beispielvideos auf YouTube
-<br>
+<br><br>
 ![Github-Overview](/assets/images/picture_n8n_1.PNG)
 <br>
 ![Github-Overview](/assets/images/picture_n8n_2.PNG)
