@@ -2,7 +2,7 @@
 layout: default
 title: ""
 ---
-## Lkas Karrer
+## Lukas Karrer
 
 # Portfolio 
 
