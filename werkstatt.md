@@ -17,7 +17,7 @@ Hier ein kurzer Überblick über meine Ausstattung, mit der ich die Projekte bau
 - Raspberry Pi / Arduino Boards
 
 
-<br>
+
 ![PC-Arbeitsstation](/assets/images/workshop_far.JPG)
 <br><br>
 ![PC-Arbeitsstation-CloseUp](/assets/images/workshop_closeup.JPG)
@@ -25,7 +25,7 @@ Hier ein kurzer Überblick über meine Ausstattung, mit der ich die Projekte bau
 ![Lötplatz](/assets/images/soldering.JPG)
 <br><br>
 ![3D-Drucker](/assets/images/3dprinter.jpg)
-<br>
+<br><br>
 
 
 
