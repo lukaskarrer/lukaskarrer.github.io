@@ -2,7 +2,7 @@
 layout: default
 title: ""
 ---
-[🌐 View this page in English](https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https://lukaskarrer.github.io)
+[🌐 English version](https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https://lukaskarrer.github.io)
 
 ## Lukas Karrer
 
