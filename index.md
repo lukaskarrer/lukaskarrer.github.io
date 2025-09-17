@@ -21,18 +21,20 @@ Hier findest du eine Auswahl meiner privaten und studentischen Projekte.
 - **Aktuelle Projekte:** autonomes Prototyp-Setup
 
 ## Projekte
-- [Smart-Garagenöffner mit Arduino](/projects/garage-opener/)
-- [KI-gestützter Literatur-Scanner](/projects/literature-scanner/)
-- [Indoor-Gewächshaus (Schienensystem)](/projects/indoor-greenhouse/)
-- [Automatisierte Kurzvideo-Generierung mit n8n](/projects/n8n-shortvideos/)
-- [Automatisiertes Insektenabwehr-System](/projects/insect-defence/)
-- [Raketenprototyp aus Edelstahl](/projects/starship-prototype/)
-- [3D-Druckprojekte mit Elegoo Neptune 4](/projects/3d-printing/)
+- [3D-Druckprojekte mit Elegoo Neptune 4](/projects/3d-printing/)1
+- [Smart-Garagenöffner mit Arduino](/projects/garage-opener/)2
+- [Indoor-Gewächshaus (Schienensystem)](/projects/indoor-greenhouse/)3
+- [Automatisiertes Insektenabwehr-System](/projects/insect-defence/)4
+- [KI-gestützter Literatur-Scanner](/projects/literature-scanner/)5
+- [Automatisierte Kurzvideo-Generierung mit n8n](/projects/n8n-shortvideos/)6
+- [Raketenprototyp aus Edelstahl](/projects/starship-prototype/)7
+
 
 ## Werkstatt und Arbeitsplatz
 - [Werkstatt](/werkstatt/)
 - beta
 - gamma
+  
 ---
 
 
