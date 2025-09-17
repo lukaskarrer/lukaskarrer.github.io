@@ -31,6 +31,8 @@ Hier findest du eine Auswahl meiner privaten und studentischen Projekte.
 
 ## Werkstatt und Arbeitsplatz
 - [Werkstatt](/werkstatt/)
+- beta
+- gamma
 ---
 
 
