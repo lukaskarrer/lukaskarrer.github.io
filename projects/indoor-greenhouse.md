@@ -20,8 +20,8 @@ Konzept und Prototyp für ein Indoor-Gewächshaus, bei dem Pflanzschalen auf 3D-
 
 
 ## Ergebnis & Proof
-- Konzeptzeichnungen, Prototyp-Fotos, APK / App-Screenshots
-
+- Inhaltsverzechnis Code, Programmablaufplan, App-Screenshots
+<br>
 
 ![Github-Overview](/assets/images/screenshot_OOP_Verzechnis.PNG)
 <br><br>
