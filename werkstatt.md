@@ -22,9 +22,9 @@ Hier ein kurzer Überblick über meine Ausstattung, mit der ich die Projekte bau
 <br><br>
 ![PC-Arbeitsstation-CloseUp](/assets/images/workshop_closeup.JPG)
 <br><br>
-![3D-Drucker](/assets/images/3dprinter.jpg)
-<br><br>
 ![Lötplatz](/assets/images/soldering.JPG)
+<br><br>
+![3D-Drucker](/assets/images/3dprinter.jpg)
 <br>
 
 
