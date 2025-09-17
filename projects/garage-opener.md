@@ -24,7 +24,8 @@ Arduino, CC1101, Löten, Android-Smartphone (als UI)
 - Funktionierender Prototyp
 - Code Ausschnitt
 - Signalaufnahme Universal Radio Hacker
-<br>
+
+
 ![Github-Overview](/assets/images/picture_GarageOpener.JPG)
 <br><br>
 ![Github-Overview](/assets/images/screenshot_ArduinoUNO.PNG)
