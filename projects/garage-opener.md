@@ -24,7 +24,12 @@ Arduino, CC1101, Löten, Android-Smartphone (als UI)
 - Funktionierender Prototyp
 - Fotos und Schaltpläne
 
-
+![Github-Overview](/assets/images/picture_GarageOpener.JPG)
+<br><br>
+![Github-Overview](/assets/images/screenshoot_ArduinoUNO.PNG)
+<br><br>
+![Github-Overview](/assets/images/screenshoot_URHPNG)
+<br><br>
 
 
 [← Zurück zur Startseite](/)
