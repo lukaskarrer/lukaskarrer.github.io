@@ -5,19 +5,19 @@ permalink: /projects/starship-prototype/
 ---
 
 ## Ziel
-Bau eines halben Meter großen Raketenprototyps, inspiriert vom Starship-Design, aus Edelstahl mittels WIG-Schweißen.
+Bau eines halben Meter großen Raketenprototyps, inspiriert vom Starship-Design, aus Edelstahl mittels WIG-Schweißen, Biegen und Drehen.
 
 ## Umsetzung
 - Material: Edelstahl
-- Verfahren: WIG-Schweißen
+- Verfahren: WIG-Schweißen, Biegen und Drehen
 - Konstruktion: halbmetriger Prototyp, detailgetreues Design
 - Fokus: Präzision beim Schweißen, Stabilität der Struktur
 
 ## Technologien
-WIG-Schweißen, Edelstahl, Metallbearbeitung
+WIG-Schweißen, Edelstahl, Metallbearbeitung, Biegen, Drehen
 
 ## Ergebnis & Proof
-- Fertiger halber Meter großer Prototyp
+- Fertiger Prototyp
 
 ![Github-Overview](/assets/images/picture_welding.JPG)
 <br><br>
