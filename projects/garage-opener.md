@@ -27,6 +27,7 @@ Arduino, CC1101, Löten, Android-Smartphone (als UI)
 
 
 <br>
+
 ![Github-Overview](/assets/images/picture_GarageOpener.JPG)
 <br><br>
 ![Github-Overview](/assets/images/screenshot_ArduinoUNO.PNG)
