@@ -20,9 +20,11 @@ Raspberry Pi, OpenCV, Python, 3D-gedruckte Halterungen, Servos
 
 
 ## Ergebnis & Proof
-- Prototyp-Fotos, Demo-Video, Codebeispiele
+- Prototyp-Fotos
 
 
+![Github-Overview](/assets/images/picture_defense.jpg)
+<br><br>
 
 
 
