@@ -22,8 +22,13 @@ Konzept und Prototyp für ein Indoor-Gewächshaus, bei dem Pflanzschalen auf 3D-
 ## Ergebnis & Proof
 - Konzeptzeichnungen, Prototyp-Fotos, APK / App-Screenshots
 
+![Github-Overview](/assets/images/pdf_garden_GUI.pdf)
+<br><br>
+![Github-Overview](/assets/images/picture_starship.JPG)
+<br><br>
+![Github-Overview](/assets/images/picture_starship.JPG)
+<br><br>
 
-pdf_garden_GUI
 
 
 [← Zurück zur Startseite](/)
