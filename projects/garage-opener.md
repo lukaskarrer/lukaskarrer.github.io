@@ -22,10 +22,9 @@ Arduino, CC1101, Löten, Android-Smartphone (als UI)
 
 ## Ergebnis & Proof
 - Funktionierender Prototyp
-- Fotos und Schaltpläne in `/assets/images/` (bzw. GitHub-Repo-Link)
+- Fotos und Schaltpläne
 
 
-[→ GitHub-Repo mit Code (falls öffentlich)](https://github.com/USERNAME/garage-opener)
 
 
 [← Zurück zur Startseite](/)
