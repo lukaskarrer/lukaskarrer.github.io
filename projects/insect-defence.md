@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Automatisiertes Insektenabwehr-System (Prototyp)"
+title: "Automatisiertes Insektenabwehr-System (aktuell in Entwicklung)"
 permalink: /projects/insect-defence/
 ---
 
