@@ -4,7 +4,7 @@ title: ""
 ---
 
 
-# Portfolio 🚀
+# Portfolio 
 
 
 Angehender Raumfahrt-Ingenieur mit dem Ziel, in der bemannten Raumfahrt tätig zu werden. Neben dem Studium setze ich praxisorientierte Projekte in 3D-Druck, Embedded-Systemen und KI um. 
