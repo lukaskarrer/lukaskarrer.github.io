@@ -17,7 +17,7 @@ Automatisierte tägliche Recherche und Relevanzbewertung wissenschaftlicher Arti
 
 
 ## Technologien
-Python, GitHub Actions, OpenAI GPT-3.5-Turbo (API), SMTP / Mail-API
+Python, GitHub Actions, OpenAI GPT-3.5-Turbo (API), Mail-API
 
 
 ## Ergebnis & Proof
