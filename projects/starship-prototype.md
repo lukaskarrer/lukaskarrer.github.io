@@ -23,8 +23,6 @@ WIG-Schweißen, Edelstahl, Metallbearbeitung, Biegen, Drehen
 <br><br>
 ![Github-Overview](/assets/images/picture_halfdone.jpg)
 <br><br>
-![Github-Overview](/assets/images/picture_starship.JPG)
-<br><br>
 ![Github-Overview](/assets/images/picture_starship_3.jpg)
 <br><br>
 ![Github-Overview](/assets/images/picture_starship_4.JPG)
