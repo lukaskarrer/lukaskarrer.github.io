@@ -1,9 +1,0 @@
-title: ""
-email: "lukas.karrer26@gmail.com"
-description: "Angehender Raumfahrt-Ingenieur | Prototyping, 3D-Druck, Embedded & KI"
-baseurl: ""
-url: "https://lukaskarrer.github.io"
-theme: minima
-plugins:
-  - jekyll-feed
-
