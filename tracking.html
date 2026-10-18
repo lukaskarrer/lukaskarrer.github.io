@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar-Kamera-Tracking – Lukas Karrer</title>
+<meta name="title-en" content="Radar-camera tracking – Lukas Karrer">
+<meta name="description" content="60‑GHz-Radar und Kamera verfolgen eine Person, ein Gimbal zeigt das Ziel mit einem Laserpunkt. Firmware, Tracking, Sensorfusion und Gehäuse selbst gebaut.">
+<meta property="og:title" content="Radar-Kamera-Tracking – Lukas Karrer">
+<meta property="og:image" content="assets/img/tp-setup-front.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d1d1f'/%3E%3Ccircle cx='44' cy='22' r='5' fill='%23ff3b30'/%3E%3Cpath d='M14 50 L44 22' stroke='%23ff3b30' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;650;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main" data-en="Skip to content">Zum Inhalt</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html">Lukas Karrer</a>
+    <nav class="nav-links" id="nav-links" aria-label="Seitennavigation">
+      <a href="#ablauf" data-en="How it works">Ablauf</a>
+      <a href="#genauigkeit" data-en="Accuracy">Genauigkeit</a>
+      <a href="#hardware">Hardware</a>
+      <a href="#v2" data-en="Version 2">Version 2</a>
+      <a href="index.html#projekte" data-en="All projects">Alle Projekte</a>
+    </nav>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menü öffnen" data-menu><span></span><span></span></button>
+    <button class="lang" type="button" data-lang-toggle aria-label="Sprache wechseln / switch language">EN</button>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="dark tp-hero">
+  <div class="wrap center">
+    <p class="kicker" data-en="Project thesis, Microcomputer Engineering · TH Rosenheim · 2026">Projektstudienarbeit Mikrocomputertechnik · TH Rosenheim · 2026</p>
+    <h1 data-en="Radar-camera tracking.">Radar-Kamera-Tracking.</h1>
+    <p class="lead" data-en="A 60 GHz radar measures distance, speed and angle. A camera adds direction and height. Together they steer a pan/tilt head that points a laser dot at the person — the laser displays the result, it doesn't measure anything.">Ein 60‑GHz-Radar misst Entfernung, Geschwindigkeit und Winkel. Eine Kamera ergänzt Richtung und Höhe. Zusammen steuern sie einen Schwenk-Neige-Kopf, der einen Laserpunkt auf die Person richtet – der Laser zeigt das Ergebnis an, er misst nichts.</p>
+  </div>
+  <div class="wrap stage">
+    <div class="screen">
+      <video src="assets/video/tp-demo.mp4" poster="assets/img/tp-demo-poster.jpg" muted loop playsinline preload="metadata" data-autoplay aria-label="Testlauf in der Weboberfläche: erkannte Person mit Radarspur und Zielhöhe"></video>
+    </div>
+  </div>
+  <div class="wrap stats">
+    <div class="stat"><b>60 GHz</b><span data-en="Infineon BGT60TR13C radar">Radar Infineon BGT60TR13C</span></div>
+    <div class="stat"><b>20 Hz</b><span data-en="radar frames over SPI">Radarbilder über SPI</span></div>
+    <div class="stat"><b>±3,5 cm</b><span data-en="lateral, static at 2.5 m">seitlich, statisch auf 2,5 m</span></div>
+    <div class="stat"><b>312</b><span data-en="automated tests">automatische Tests</span></div>
+  </div>
+</section>
+
+<section class="section mist" id="ablauf" aria-labelledby="flow-title">
+  <div class="wrap">
+    <div class="center">
+      <h2 id="flow-title" data-en="From echo to laser dot.">Vom Echo zum Laserpunkt.</h2>
+      <p class="lead" data-en="Every 50 milliseconds the data runs through four stages on two processors.">Alle 50 Millisekunden laufen die Daten durch vier Stufen auf zwei Prozessoren.</p>
+    </div>
+    <ol class="steps">
+      <li><h3 data-en="Radar measures">Radar misst</h3><p data-en="On the PSoC 6: range-Doppler FFT, CA-CFAR detection and monopulse angle, written in C.">Auf dem PSoC 6: Range-Doppler-FFT, CA-CFAR-Detektion und Monopuls-Winkel, in C geschrieben.</p></li>
+      <li><h3 data-en="Tracker estimates">Tracker schätzt</h3><p data-en="On the Raspberry Pi: an IMM Kalman filter with data association turns detections into a stable track.">Auf dem Raspberry Pi: Ein IMM-Kalman-Filter mit Zuordnung macht aus Detektionen eine stabile Spur.</p></li>
+      <li><h3 data-en="Fusion combines">Fusion verbindet</h3><p data-en="The camera finds the colour target and adds direction and height. In the dark, the radar leads alone.">Die Kamera findet das Farbziel und liefert Seite und Höhe. Im Dunkeln führt das Radar allein.</p></li>
+      <li><h3 data-en="Gimbal points">Gimbal zeigt</h3><p data-en="Two servos on a PCA9685 follow the track with backlash compensation; the laser marks the target.">Zwei Servos am PCA9685 folgen der Spur mit Spielkompensation, der Laser markiert das Ziel.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section dark" aria-labelledby="ui-title">
+  <div class="wrap">
+    <div class="media-row">
+      <div class="screen">
+        <video src="assets/video/tp-radar.mp4" poster="assets/img/tp-radar-poster.jpg" muted loop playsinline preload="metadata" data-autoplay aria-label="Radaransicht der Weboberfläche mit Blickfeld und Spur"></video>
+      </div>
+      <div>
+        <h3 id="ui-title" style="font-size:clamp(28px,3.4vw,40px)" data-en="A control console in the browser.">Eine Leitkonsole im Browser.</h3>
+        <p data-en="The Pi serves its own web interface: radar field of view, camera image, target height on a figure, laser on/off and a safe shutdown. Tested settings are locked until you unlock them, and a built-in manual explains every view.">Der Pi liefert eine eigene Weboberfläche: Radar-Blickfeld, Kamerabild, Zielhöhe an einer Figur, Laser an/aus und sicheres Herunterfahren. Getestete Einstellungen sind gesperrt, bis man sie freischaltet, und ein eingebautes Handbuch erklärt jede Ansicht.</p>
+        <ul class="chips"><li>Python</li><li>OpenCV</li><li data-en="Web UI">Web-UI</li><li data-en="Simulator">Simulator</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="genauigkeit" aria-labelledby="acc-title">
+  <div class="wrap">
+    <div class="center">
+      <h2 id="acc-title" data-en="Measured, not estimated.">Gemessen, nicht geschätzt.</h2>
+      <p class="lead" data-en="Every number comes from recorded test runs, logged directly on the device and evaluated afterwards.">Jede Zahl stammt aus aufgezeichneten Testläufen, direkt am Gerät mitgeschnitten und danach ausgewertet.</p>
+    </div>
+    <div class="stats" style="color:var(--ink)">
+      <div class="stat"><b>±3,5 cm</b><span data-en="lateral, every approach, static target at 2.5 m">seitlich bei jeder Anfahrt, statisches Ziel auf 2,5 m</span></div>
+      <div class="stat"><b>100 %</b><span data-en="of samples within ±15 cm while walking">der Abtastungen beim Gehen innerhalb ±15 cm</span></div>
+      <div class="stat"><b>4–6 cm</b><span data-en="median error while walking">Median-Abweichung beim Gehen</span></div>
+      <div class="stat"><b>97 %</b><span data-en="laser on the shirt, version 2 walking test">Laser auf dem Shirt, Gehtest Version 2</span></div>
+    </div>
+    <table class="spec">
+      <tr><th data-en="Test A · static">Test A · statisch</th><td data-en="Target at 2.5 m, positions −1.2 / 0 / +1.2 m, three approaches from each side. Limits are servo backlash and dead bands.">Ziel auf 2,5 m, Positionen −1,2 / 0 / +1,2 m, je drei Anfahrten von links und rechts. Grenzen sind Servospiel und Totzonen.</td></tr>
+      <tr><th data-en="Test B · walking">Test B · gehend</th><td data-en="Walking along a 2.5 m line, 40 s each, six runs. Height comes from the camera only.">Gehen entlang einer 2,5-m-Linie, je 40 s, sechs Läufe. Die Höhe kommt nur von der Kamera.</td></tr>
+      <tr><th data-en="In the dark">Im Dunkeln</th><td data-en="Without a camera image the radar leads: direction is coarser, the laser stays at chest height.">Ohne Kamerabild führt das Radar: Die Seite ist gröber, der Laser bleibt auf Brusthöhe.</td></tr>
+      <tr><th data-en="Debugging">Fehlersuche</th><td data-en="One example: jumps of 22 cm survived six hypotheses until it turned out the laser sat loose in its mount. Glued in place: 4–7 cm.">Ein Beispiel: Sprünge von 22 cm überstanden sechs Hypothesen, bis sich zeigte, dass der Laser lose in der Fassung saß. Festgeklebt: 4–7 cm.</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="section mist" id="hardware" aria-labelledby="hw-title">
+  <div class="wrap">
+    <div class="center">
+      <h2 id="hw-title" data-en="Hardware, wired by hand.">Hardware, von Hand verkabelt.</h2>
+      <p class="lead" data-en="Two boards, two power supplies, a 3D-printed gimbal and an LCD that shows what the laser is following.">Zwei Boards, zwei Netzteile, ein 3D-gedruckter Gimbal und ein LCD, das zeigt, wem der Laser folgt.</p>
+    </div>
+    <div class="bento">
+      <figure class="b-6"><img src="assets/img/tp-setup-front.jpg" alt="Kompletter Aufbau von vorn mit Gimbal, LCD, Radarboard und Kamera" loading="lazy" decoding="async"><figcaption data-en="Version 1 setup">Aufbau Version 1</figcaption></figure>
+      <figure class="b-3"><img src="assets/img/tp-psoc-cam.jpg" alt="PSoC-6-Radarboard über der USB-Kamera" loading="lazy" decoding="async"><figcaption data-en="Radar board above the camera">Radarboard über der Kamera</figcaption></figure>
+      <figure class="b-3"><img src="assets/img/tp-pi.jpg" alt="Raspberry Pi 3 mit belegter Stiftleiste" loading="lazy" decoding="async"><figcaption>Raspberry Pi 3</figcaption></figure>
+      <figure class="b-2" style="aspect-ratio:3/4"><img src="assets/img/tp-lcd.jpg" alt="LCD1602 mit I²C-Adapter" loading="lazy" decoding="async"><figcaption>LCD1602</figcaption></figure>
+      <figure class="b-2" style="aspect-ratio:3/4"><img src="assets/img/tp-level.jpg" alt="Pegelwandler PCA9306" loading="lazy" decoding="async"><figcaption data-en="Level shifter">Pegelwandler</figcaption></figure>
+      <figure class="b-2" style="aspect-ratio:3/4"><img src="assets/img/tp-wiring.jpg" alt="Verkabelung am Raspberry Pi" loading="lazy" decoding="async"><figcaption data-en="Wiring">Verkabelung</figcaption></figure>
+    </div>
+    <table class="spec">
+      <tr><th>Infineon CY8CKIT-062S2-AI</th><td data-en="PSoC 6 with BGT60TR13C radar: signal processing, SPI slave to the Pi, drives the LCD">PSoC 6 mit Radar BGT60TR13C: Signalverarbeitung, SPI-Slave zum Pi, treibt das LCD</td></tr>
+      <tr><th>Raspberry Pi 3 Model B</th><td data-en="Tracker, fusion, colour detection, servo and laser control, web interface">Tracker, Fusion, Farberkennung, Servo- und Laseransteuerung, Weboberfläche</td></tr>
+      <tr><th data-en="USB camera">USB-Kamera</th><td data-en="640 × 360, 80° horizontal, direction and height of the target">640 × 360, 80° horizontal, Richtung und Höhe des Ziels</td></tr>
+      <tr><th data-en="Gimbal">Gimbal</th><td data-en="PCA9685 with MG996R (pan) and SG90 (tilt), servo power from its own 5 V / 3 A supply">PCA9685 mit MG996R (Schwenk) und SG90 (Neigung), Servostrom aus eigenem 5-V/3-A-Netzteil</td></tr>
+      <tr><th data-en="Laser">Laser</th><td data-en="KY-008, 650 nm, class 3R, switched by the Pi — only on when the operator enables it">KY-008, 650 nm, Klasse 3R, vom Pi geschaltet – nur an, wenn der Bediener ihn einschaltet</td></tr>
+      <tr><th data-en="Display">Anzeige</th><td data-en="LCD1602 over I²C with a PCA9306 level shifter, because the PSoC pins are not 5 V tolerant">LCD1602 über I²C mit Pegelwandler PCA9306, weil die PSoC-Pins nicht 5-V-fest sind</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="section dark" id="v2" aria-labelledby="v2-title">
+  <div class="wrap">
+    <div class="center">
+      <p class="kicker" data-en="October 2026">Oktober 2026</p>
+      <h2 id="v2-title" data-en="Version 2. One housing.">Version 2. Ein Gehäuse.</h2>
+      <p class="lead" data-en="Everything from the wooden board moves into a single printed housing of 190 × 100 × 241 mm, with a sensor head on top — using only hardware I already had.">Alles vom Holzbrett zieht in ein einziges gedrucktes Gehäuse mit 190 × 100 × 241 mm, mit Sensorkopf obendrauf – nur mit Hardware, die schon da war.</p>
+    </div>
+    <div class="media-row flip">
+      <div class="screen">
+        <video src="assets/video/tp-v2.mp4" poster="assets/img/tp-v2-poster.jpg" muted loop playsinline preload="metadata" data-autoplay aria-label="Animiertes 3D-Modell des V2-Gehäuses: außen, innen und Explosionszeichnung"></video>
+      </div>
+      <div>
+        <h3 data-en="Designed in OpenSCAD, checked by fit tests.">In OpenSCAD konstruiert, mit Passungstests geprüft.</h3>
+        <p data-en="Twelve parts plus test prints for press fits, screw holes and the servo horn. Every component was measured first; clearance of at least 2 mm is checked by script. Built, wired and recalibrated on 10 October.">Zwölf Teile plus Testdrucke für Presssitze, Schraublöcher und das Servohorn. Jedes Bauteil wurde vorher vermessen, der Freigang von mindestens 2 mm per Skript geprüft. Gebaut, verkabelt und neu kalibriert am 10. Oktober.</p>
+        <ul class="chips"><li>OpenSCAD</li><li data-en="Fit tests">Passungstests</li><li data-en="FDM printing">FDM-Druck</li><li data-en="Calibration">Kalibrierung</li></ul>
+      </div>
+    </div>
+
+    <ol class="timeline">
+      <li>
+        <img src="assets/img/tp-origin.jpg" alt="Erster Prototyp: Raspberry Pi, Kamera und Servos auf dem Tisch" loading="lazy" decoding="async">
+        <div><time data-en="Start">Anfang</time><h3 data-en="First prototype">Erster Prototyp</h3><p data-en="Raspberry Pi, camera, two servos and a laser pointer — following coloured balloons.">Raspberry Pi, Kamera, zwei Servos und ein Laserpointer – verfolgt farbige Ballons.</p></div>
+      </li>
+      <li>
+        <img src="assets/img/tp-setup-top.jpg" alt="Aufbau Version 1 von oben" loading="lazy" decoding="async">
+        <div><time data-en="September 2026">September 2026</time><h3 data-en="Version 1 submitted">Version 1 abgegeben</h3><p data-en="Radar, camera fusion, LCD, web console and report, measured with test A and B.">Radar, Kamerafusion, LCD, Leitkonsole und Bericht, vermessen mit Test A und B.</p></div>
+      </li>
+      <li>
+        <img src="assets/img/tp-v2-views.jpg" alt="Ansichten des V2-Gehäuses: vorne, hinten und geöffnet" loading="lazy" decoding="async">
+        <div><time data-en="October 2026">Oktober 2026</time><h3 data-en="Version 2 housing">Version 2 im Gehäuse</h3><p data-en="Printed, assembled and calibrated: lateral 1–2 cm after a restart.">Gedruckt, montiert und kalibriert: seitlich 1–2 cm nach einem Neustart.</p></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section mist" aria-labelledby="sw-title">
+  <div class="wrap">
+    <div class="center">
+      <h2 id="sw-title" data-en="Software you can test without hardware.">Software, testbar ohne Hardware.</h2>
+      <p class="lead" data-en="A simulator for the PSoC and radar runs the whole chain on a laptop, with the same controls as the device.">Ein Simulator für PSoC und Radar lässt die ganze Kette auf dem Laptop laufen, mit derselben Bedienung wie am Gerät.</p>
+    </div>
+    <table class="spec">
+      <tr><th data-en="Firmware (C)">Firmware (C)</th><td data-en="Radar DSP, SPI protocol with frames, LCD driver, display logic; flashed remotely from the Pi with pyOCD">Radar-DSP, SPI-Protokoll mit Frames, LCD-Treiber, Anzeigelogik; geflasht per pyOCD direkt vom Pi</td></tr>
+      <tr><th data-en="Pi host (Python)">Pi-Host (Python)</th><td data-en="Kalman/IMM tracker, association, prioritisation, fusion, servo driver, laser safety logic, web interface">Kalman-/IMM-Tracker, Zuordnung, Priorisierung, Fusion, Servotreiber, Laser-Sicherheitslogik, Weboberfläche</td></tr>
+      <tr><th data-en="Tests and tools">Tests und Werkzeuge</th><td data-en="312 Python tests, a PC test for the LCD driver in C, calibration and capture tools">312 Python-Tests, ein PC-Test des LCD-Treibers in C, Kalibrier- und Mitschnittwerkzeuge</td></tr>
+      <tr><th data-en="Documentation">Dokumentation</th><td data-en="Work logs written as problem, approach, attempts and results, plus a full report with wiring diagram">Arbeitsprotokolle nach dem Schema Problem, Herangehensweise, Versuche und Ergebnis, dazu ein vollständiger Bericht mit Schaltplan</td></tr>
+    </table>
+
+    <div class="callout">
+      <svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 3 L26 24 H2 Z" fill="none" stroke="#1d1d1f" stroke-width="2" stroke-linejoin="round"/><path d="M14 11 v6" stroke="#1d1d1f" stroke-width="2" stroke-linecap="round"/><circle cx="14" cy="20.5" r="1.3" fill="#1d1d1f"/></svg>
+      <div>
+        <h3 data-en="Safety built in">Sicherheit eingebaut</h3>
+        <p data-en="The class 3R laser only turns on when the operator switches it on, and it is guaranteed off when the program ends or the Pi shuts down. Above shoulder height the interface shows a red warning.">Der Laser der Klasse 3R geht nur an, wenn der Bediener ihn einschaltet, und ist beim Beenden des Programms oder Herunterfahren garantiert aus. Ab Schulterhöhe zeigt die Oberfläche eine rote Warnung.</p>
+      </div>
+    </div>
+
+    <div class="pager" style="margin-top:56px">
+      <a class="more" href="index.html#projekte" data-en="All projects">Alle Projekte</a>
+      <a class="more" href="index.html#kontakt" data-en="Questions about the project">Fragen zum Projekt</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Lukas Karrer</span>
+    <span><a href="mailto:lukas.karrer26@gmail.com">lukas.karrer26@gmail.com</a></span>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+<script data-goatcounter="https://lukaskarrer.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

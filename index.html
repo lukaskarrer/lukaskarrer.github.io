@@ -1,294 +1,341 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lukas Karrer – Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #ffffff; --surface: #f5f5f5; --border: #d0d0d0;
-      --text: #000000; --muted: #333333; --subtle: #666666;
-      --accent: #2563eb; --green: #16a34a;
-    }
-    body.dark {
-      --bg: #0c0c0c; --surface: #141414; --border: #2a2a2a;
-      --text: #ffffff; --muted: #eeeeee; --subtle: #cccccc;
-      --accent: #c8a96e; --green: #4aad6a;
-    }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.7; min-height: 100vh; transition: background 0.4s, color 0.3s; }
-    .page { max-width: 680px; margin: 0 auto; padding: 4rem 1.5rem 5rem; }
-    .animate-in { opacity: 0; transform: translateY(18px); animation: fadeUp 0.6s cubic-bezier(0.23,1,0.32,1) forwards; }
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-    .d1{animation-delay:.05s}.d2{animation-delay:.1s}.d3{animation-delay:.18s}.d4{animation-delay:.26s}.d5{animation-delay:.34s}
-
-    .hero { margin-bottom: 0; }
-    .hero-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.9rem; }
-    .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; }
-    .nav-buttons { display: flex; gap: 8px; }
-    .nav-btn { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); background: none; border: 1px solid var(--border); padding: 4px 10px; border-radius: 4px; cursor: pointer; transition: color .2s, border-color .2s, background .2s; }
-    .nav-btn:hover { color: var(--text); border-color: var(--subtle); background: var(--surface); }
-    .hero h1 { font-size: 2.6rem; font-weight: 300; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 1.2rem; }
-    .hero p { color: var(--muted); font-size: 15px; line-height: 1.8; max-width: 560px; }
-    .divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
-    .section-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.7rem; font-weight: 500; }
-    .overview { margin-bottom: 0; }
-    .overview-row { display: flex; gap: 1rem; font-size: 14px; margin-bottom: 0.4rem; }
-    .overview-key { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); min-width: 130px; flex-shrink: 0; padding-top: 2px; }
-    .badge-active { display: inline-block; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--green); border: 1px solid var(--green); padding: 1px 7px; border-radius: 3px; margin-left: 8px; vertical-align: middle; animation: softPulse 2.8s ease-in-out infinite; }
-    @keyframes softPulse { 0%,100%{opacity:.9} 50%{opacity:.5} }
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: .3rem; }
-    .tag { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text); border: 1px solid var(--border); padding: 3px 9px; border-radius: 3px; user-select: none; }
-    .project-list { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-    .project-item { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.3rem; background: var(--bg); border-bottom: 1px solid var(--border); cursor: pointer; transition: background .15s, padding-left .2s; gap: 1rem; }
-    .project-item:last-child { border-bottom: none; }
-    .project-item:hover { background: var(--surface); padding-left: 1.5rem; }
-    .project-item:hover .project-arrow { color: var(--accent); transform: translateX(3px); }
-    .project-name { font-size: 14px; color: var(--text); }
-    .project-meta { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 3px; }
-    .project-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-    .project-date-tag { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
-    .project-wip { color: var(--accent); }
-    .project-arrow { font-size: 14px; color: var(--subtle); transition: color .15s, transform .2s; }
-    .werkstatt-link { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.3rem; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: background .15s, padding-left .25s cubic-bezier(0.23,1,0.32,1); }
-    .werkstatt-link:hover { background: var(--surface); padding-left: 1.5rem; }
-    .werkstatt-link:hover .project-arrow { color: var(--accent); transform: translateX(3px); }
-    .werkstatt-title { font-size: 14px; color: var(--text); }
-    .werkstatt-sub { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
-
-    .detail-view { display: none; } .detail-view.active { display: block; } .start-view.hidden { display: none; }
-    .back-link { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: color .2s; }
-    .back-link:hover { color: var(--text); } .back-link:hover .back-arrow { transform: translateX(-3px); } .back-arrow { transition: transform .2s; }
-    .detail-bottom { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); }
-    .detail-bottom-nav { display: flex; justify-content: space-between; align-items: center; }
-    .back-btn { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: color .2s; }
-    .back-btn:hover { color: var(--text); }
-    .back-btn:hover .back-arrow { transform: translateX(-3px); }
-    .detail-header { margin-bottom: 0; }
-    .detail-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.6rem; }
-    .detail-title { font-size: 2rem; font-weight: 300; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 0.6rem; }
-    .detail-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-    .section { margin-bottom: 1.5rem; }
-    .section p { color: var(--muted); font-size: 14px; line-height: 1.8; }
-    .section ul { list-style: none; padding: 0; }
-    .section ul li { color: var(--muted); font-size: 14px; line-height: 1.8; }
-    .section ul li::before { content: "·"; color: var(--subtle); font-weight: 700; margin-right: 8px; }
-    .image-grid { display: flex; flex-direction: column; gap: 1rem; margin-top: .8rem; }
-    .image-grid img { width: 100%; border-radius: 6px; border: 1px solid var(--border); }
-    .image-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .image-pair img { width: 100%; border-radius: 6px; border: 1px solid var(--border); }
-    .image-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-top: 1.2rem; margin-bottom: .5rem; }
-    .ext-link { display: inline-flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); text-decoration: none; margin-top: 1rem; padding: 6px 12px; border: 1px solid var(--border); border-radius: 4px; transition: background .15s, border-color .15s; }
-    .ext-link:hover { background: var(--surface); border-color: var(--subtle); }
-    footer { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
-    .footer-status { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 7px; }
-    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; animation: dotPulse 2.5s ease-in-out infinite; }
-    @keyframes dotPulse { 0%,100%{box-shadow:0 0 0 0 rgba(22,163,74,.4)} 50%{box-shadow:0 0 0 4px rgba(22,163,74,0)} }
-    body.dark .status-dot { animation-name: dotPulseDark; }
-    @keyframes dotPulseDark { 0%,100%{box-shadow:0 0 0 0 rgba(58,125,92,.4)} 50%{box-shadow:0 0 0 4px rgba(58,125,92,0)} }
-    .footer-contact { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color .2s; }
-    .footer-contact:hover { color: var(--text); }
-    
-    .detail-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
-    .detail-back-bottom { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: color .2s; margin-top: 1.5rem; }
-    .detail-back-bottom:hover { color: var(--text); }
-    .detail-back-bottom:hover .back-arrow { transform: translateX(-3px); }
-    @media(max-width:500px){ .hero h1{font-size:2rem} .detail-title{font-size:1.6rem} .overview-key{min-width:90px} .project-right{gap:8px} .image-pair{grid-template-columns:1fr} footer{flex-direction:column;align-items:flex-start} }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lukas Karrer – Projekte</title>
+<meta name="description" content="Projekte von Lukas Karrer: Radar-Kamera-Tracking, Edelstahl-Rakete, Embedded-Systeme, 3D-Druck und Automatisierung.">
+<meta property="og:title" content="Lukas Karrer – Projekte">
+<meta property="og:description" content="Mechatronik-Student mit Ziel Raumfahrt. Embedded-Systeme, Regelung, Fertigung.">
+<meta property="og:image" content="assets/img/tp-setup-front.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d1d1f'/%3E%3Ccircle cx='44' cy='22' r='5' fill='%23ff3b30'/%3E%3Cpath d='M14 50 L44 22' stroke='%23ff3b30' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;650;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-<div class="page">
+<a class="skip" href="#main" data-en="Skip to content">Zum Inhalt</a>
 
-  <!-- ═══ START ═══ -->
-  <div id="start-view" class="start-view">
-    <header class="hero animate-in d1">
-      <div class="hero-top">
-        <div class="hero-eyebrow" data-de="Portfolio" data-en="Portfolio">Portfolio</div>
-        <div class="nav-buttons">
-          <button class="nav-btn" id="lang-btn" onclick="toggleLang()">EN</button>
-          <button class="nav-btn" id="theme-btn" onclick="toggleTheme()">☾</button>
-        </div>
-      </div>
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html">Lukas Karrer</a>
+    <nav class="nav-links" id="nav-links" aria-label="Hauptnavigation">
+      <a href="tracking.html" data-en="Tracking">Tracking</a>
+      <a href="#projekte" data-en="Projects">Projekte</a>
+      <a href="#werkstatt" data-en="Workshop">Werkstatt</a>
+      <a href="#ueber" data-en="About">Über mich</a>
+      <a href="#kontakt" data-en="Contact">Kontakt</a>
+    </nav>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menü öffnen" data-menu><span></span><span></span></button>
+    <button class="lang" type="button" data-lang-toggle aria-label="Sprache wechseln / switch language">EN</button>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <p class="kicker" data-en="Aspiring aerospace engineer">Angehender Raumfahrtingenieur</p>
       <h1>Lukas Karrer</h1>
-      <p data-de="Angehender Raumfahrt-Ingenieur mit dem Ziel, in der bemannten Raumfahrt tätig zu werden. Neben dem Studium setze ich praxisorientierte Projekte in additiver Fertigung, Embedded-Systemen und KI um. Hier ist eine Auswahl meiner privaten und studentischen Projekte." data-en="Aspiring aerospace engineer with the goal of working in human spaceflight. Alongside my studies, I build hands-on projects in additive manufacturing, embedded systems, and AI. Here is a selection of my personal and academic projects.">Angehender Raumfahrt-Ingenieur mit dem Ziel, in der bemannten Raumfahrt tätig zu werden. Neben dem Studium setze ich praxisorientierte Projekte in additiver Fertigung, Embedded-Systemen und KI um. Hier ist eine Auswahl meiner privaten und studentischen Projekte.</p>
-    </header>
-    <hr class="divider animate-in d2">
-    <section class="overview animate-in d2">
-      <div class="section-label" data-de="Kurzüberblick" data-en="Overview">Kurzüberblick</div>
-      <div class="overview-row">
-        <span class="overview-key" data-de="Techniken" data-en="Skills">Techniken</span>
-        <div><div class="tags">
-          <span class="tag">Arduino / RPi</span><span class="tag">Python</span><span class="tag">C</span><span class="tag">CAD</span><span class="tag" data-de="Additive Fertigung" data-en="Additive Manufacturing">Additive Fertigung</span><span class="tag" data-de="KI-APIs" data-en="AI APIs">KI-APIs</span><span class="tag">Welding</span>
-        </div></div>
+      <p class="lead" data-en="I study mechatronics at TH Rosenheim and will start my master's in aerospace engineering at the University of Stuttgart in 2027. Alongside my studies I develop my own projects — from 60 GHz radar tracking to a welded stainless-steel rocket.">Ich studiere Mechatronik an der TH Rosenheim und beginne 2027 meinen Master in Luft- und Raumfahrttechnik an der Universität Stuttgart. Neben dem Studium entwickle ich eigene Projekte – vom 60‑GHz-Radar-Tracking bis zur geschweißten Edelstahl-Rakete.</p>
+      <div class="links">
+        <a class="btn" href="#projekte" data-en="See projects">Projekte ansehen</a>
+        <a class="more" href="#kontakt" data-en="Get in touch">Kontakt aufnehmen</a>
       </div>
-      <div class="overview-row" style="margin-top:.8rem">
-        <span class="overview-key" data-de="Aktuelles Projekt" data-en="Current project">Aktuelles Projekt</span>
-        <span><span data-de="Automatisiertes Insektenabwehr-System" data-en="Automated Insect Defense System">Automatisiertes Insektenabwehr-System</span><span class="badge-active" data-de="in Entwicklung" data-en="in progress">in Entwicklung</span></span>
+    </div>
+    <div class="hero-media">
+      <img src="assets/img/rk-4.jpg" width="1350" height="1800" alt="Selbst gebaute Rakete aus Edelstahl vor einer weißen Wand" fetchpriority="high">
+    </div>
+  </div>
+</section>
+
+<section class="section dark feature" id="tracking" aria-labelledby="tp-title">
+  <div class="wrap center">
+    <p class="kicker" data-en="Latest project · 2026">Neuestes Projekt · 2026</p>
+    <h2 id="tp-title" data-en="Radar meets camera.">Radar trifft Kamera.</h2>
+    <p class="lead" data-en="A 60 GHz radar and a camera find a person in the room. A pan/tilt gimbal follows them and shows the result with a laser dot — firmware, tracking, sensor fusion and housing all built by me.">Ein 60‑GHz-Radar und eine Kamera finden eine Person im Raum. Ein Schwenk-Neige-Kopf folgt ihr und zeigt das Ergebnis mit einem Laserpunkt – Firmware, Tracking, Sensorfusion und Gehäuse komplett selbst gebaut.</p>
+    <div class="links">
+      <a class="more" href="tracking.html" data-en="Explore the project">Zum Projekt</a>
+    </div>
+  </div>
+  <div class="wrap stage">
+    <div class="screen">
+      <video src="assets/video/tp-demo.mp4" poster="assets/img/tp-demo-poster.jpg" muted loop playsinline preload="auto" data-autoplay aria-label="Weboberfläche während eines Testlaufs: Kamerabild mit erkannter Person, Radarspur und Zielhöhe"></video>
+    </div>
+  </div>
+  <div class="wrap stats">
+    <div class="stat"><b>60 GHz</b><span data-en="FMCW radar on a PSoC 6">FMCW-Radar auf einem PSoC 6</span></div>
+    <div class="stat"><b>20 Hz</b><span data-en="radar frames to the Raspberry Pi">Radarbilder pro Sekunde zum Pi</span></div>
+    <div class="stat"><b>±3,5 cm</b><span data-en="lateral accuracy at 2.5 m">seitliche Genauigkeit auf 2,5 m</span></div>
+    <div class="stat"><b>312</b><span data-en="automated tests plus a simulator">automatische Tests plus Simulator</span></div>
+  </div>
+</section>
+
+<section class="section mist" id="projekte" aria-labelledby="proj-title">
+  <div class="wrap">
+    <div class="center">
+      <h2 id="proj-title" data-en="More projects.">Weitere Projekte.</h2>
+      <p class="lead" data-en="Metalwork, embedded electronics, software and automation. Select a project for details and photos.">Metallbau, Embedded-Elektronik, Software und Automatisierung. Wähle ein Projekt für Details und Fotos.</p>
+    </div>
+
+    <div class="tiles">
+      <button class="tile wide" type="button" data-open="p-rakete">
+        <div class="tile-body">
+          <p class="tile-meta" data-en="Metalwork · Sep 2025">Metallbau · Sep 2025</p>
+          <h3 data-en="Stainless-steel rocket prototype">Raketenprototyp aus Edelstahl</h3>
+          <p class="desc" data-en="A half-metre model inspired by Starship, TIG-welded, bent and turned from stainless steel.">Ein halber Meter Rakete nach Starship-Vorbild – aus Edelstahl WIG-geschweißt, gebogen und gedreht.</p>
+          <span class="more" data-en="Details">Details</span>
+        </div>
+        <figure><img src="assets/img/rk-1.jpg" width="1800" height="1396" alt="Fertige Edelstahl-Rakete mit Finnen auf einem Ständer" loading="lazy" decoding="async"></figure>
+      </button>
+
+      <button class="tile contain" type="button" data-open="p-scanner">
+        <div class="tile-body">
+          <p class="tile-meta" data-en="Python · AI · Jul 2025">Python · KI · Jul 2025</p>
+          <h3 data-en="AI literature scanner">KI-Literatur-Scanner</h3>
+          <p class="desc" data-en="Searches open-access papers every day, rates their relevance and sends a summary by email.">Durchsucht täglich Open-Access-Paper, bewertet ihre Relevanz und schickt eine Zusammenfassung per Mail.</p>
+          <span class="more" data-en="Details">Details</span>
+        </div>
+        <figure><img src="assets/img/ls-mail.jpg" width="1400" height="682" alt="Automatisch erzeugte E-Mail mit bewerteten Artikeln" loading="lazy" decoding="async"></figure>
+      </button>
+
+      <button class="tile contain" type="button" data-open="p-garten">
+        <div class="tile-body">
+          <p class="tile-meta" data-en="Java · Mechanics · Jul 2025">Java · Mechanik · Jul 2025</p>
+          <h3 data-en="Indoor greenhouse on rails">Indoor-Gewächshaus auf Schienen</h3>
+          <p class="desc" data-en="Plant trays move along 3D-printed rails to the best light and temperature.">Pflanzschalen fahren auf 3D-gedruckten Schienen zu optimalem Licht und Temperatur.</p>
+          <span class="more" data-en="Details">Details</span>
+        </div>
+        <figure><img src="assets/img/gh-gui.jpg" width="1600" height="898" alt="Konfigurationsoberfläche des Gewächshauses in JavaFX" loading="lazy" decoding="async"></figure>
+      </button>
+
+      <button class="tile contain" type="button" data-open="p-n8n">
+        <div class="tile-body">
+          <p class="tile-meta" data-en="n8n · AI · Jun 2025">n8n · KI · Jun 2025</p>
+          <h3 data-en="Automated short videos">Automatische Kurzvideos</h3>
+          <p class="desc" data-en="A workflow on my own server turns a text prompt into a finished, uploaded short video.">Ein Workflow auf eigenem Server macht aus einem Textprompt ein fertiges, hochgeladenes Kurzvideo.</p>
+          <span class="more" data-en="Details">Details</span>
+        </div>
+        <figure><img src="assets/img/n8n-1.jpg" width="1600" height="841" alt="n8n-Workflow mit verbundenen Knoten" loading="lazy" decoding="async"></figure>
+      </button>
+
+      <button class="tile" type="button" data-open="p-druck">
+        <div class="tile-body">
+          <p class="tile-meta" data-en="CAD · 3D printing · May 2025">CAD · 3D-Druck · Mai 2025</p>
+          <h3 data-en="Functional 3D-printed parts">3D-gedruckte Funktionsteile</h3>
+          <p class="desc" data-en="Designed in Solid Edge, printed in PETG: a handle for a sliding insect screen and a tap adapter.">In Solid Edge konstruiert, in PETG gedruckt: ein Griff fürs Schiebe-Mückengitter und ein Wasserhahn-Adapter.</p>
+          <span class="more" data-en="Details">Details</span>
+        </div>
+        <figure><img src="assets/img/p3-griff.jpg" width="1050" height="1400" alt="Gedruckter Griff am Mückengitter" loading="lazy" decoding="async"></figure>
+      </button>
+
+      <button class="tile wide" type="button" data-open="p-garage">
+        <div class="tile-body">
+          <p class="tile-meta" data-en="Arduino · Radio · Dec 2024">Arduino · Funk · Dez 2024</p>
+          <h3 data-en="Smart garage opener">Smarter Garagenöffner</h3>
+          <p class="desc" data-en="Recorded and analysed the remote's radio signal, then sent it from an Arduino controlled by phone.">Funksignal der Fernbedienung aufgezeichnet, analysiert und per Arduino vom Handy aus gesendet.</p>
+          <span class="more" data-en="Details">Details</span>
+        </div>
+        <figure><img src="assets/img/go-1.jpg" width="1400" height="1050" alt="Arduino mit CC1101-Funkmodul und Antenne" loading="lazy" decoding="async"></figure>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="werkstatt" aria-labelledby="ws-title">
+  <div class="wrap split">
+    <div>
+      <h2 id="ws-title" data-en="The workshop.">Die Werkstatt.</h2>
+      <p class="lead" data-en="Everything on this page is built here: design and simulation on the PC, then printing, soldering and testing on the same desk.">Hier entsteht alles auf dieser Seite: Konstruktion und Simulation am PC, danach Drucken, Löten und Testen am selben Tisch.</p>
+      <ul class="plain">
+        <li data-en="Workstation<span>CAD, simulation, firmware and coding</span>">Arbeitsplatz-PC<span>CAD, Simulation, Firmware und Programmierung</span></li>
+        <li data-en="Elegoo Neptune 4<span>FDM printer for PLA and PETG, sliced in Orca Slicer</span>">Elegoo Neptune 4<span>FDM-Drucker für PLA und PETG, gesliced mit Orca Slicer</span></li>
+        <li data-en="Soldering station<span>for modules, cables and repairs</span>">Lötstation<span>für Module, Kabel und Reparaturen</span></li>
+        <li data-en="Raspberry Pi, Arduino, PSoC 6<span>the boards behind most of the projects</span>">Raspberry Pi, Arduino, PSoC 6<span>die Boards hinter den meisten Projekten</span></li>
+      </ul>
+    </div>
+    <div>
+      <img src="assets/img/ws-close.jpg" width="1800" height="1350" alt="Arbeitsplatz mit zwei Monitoren, Elektronikbauteilen und Werkzeug" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<section class="section mist" aria-labelledby="next-title">
+  <div class="wrap">
+    <div class="next">
+      <div>
+        <p class="kicker" data-en="Next up">Als Nächstes</p>
+        <h3 id="next-title" style="font-size:clamp(28px,3.4vw,40px)" data-en="A self-built solar off-grid system.">Eine selbst gebaute Solar-Inselanlage.</h3>
+        <p class="lead" data-en="Starting small with phones and power banks, designed from day one to grow — to my PC, my room and one day the house. Monitoring runs on a Raspberry Pi.">Klein anfangen mit Handys und Powerbanks, von Anfang an auf Wachstum ausgelegt – bis zum PC, zum Zimmer und irgendwann zum Haus. Das Monitoring läuft auf einem Raspberry Pi.</p>
       </div>
-    </section>
-    <hr class="divider animate-in d3">
-    <section class="animate-in d3" style="margin-bottom:1.5rem">
-      <div class="section-label" data-de="Projekte" data-en="Projects">Projekte</div>
-      <div class="project-list">
-        <div class="project-item" onclick="showDetail('insect-defence')"><div><div class="project-name" data-de="Automatisiertes Insektenabwehr-System" data-en="Automated Insect Defense System">Automatisiertes Insektenabwehr-System</div><div class="project-meta">Computer Vision · Arduino · <span class="project-wip" data-de="In Entwicklung" data-en="In progress">In Entwicklung</span></div></div><div class="project-right"><span class="project-date-tag project-wip" data-de="Laufend" data-en="Ongoing">Laufend</span><span class="project-arrow">→</span></div></div>
-        <div class="project-item" onclick="showDetail('starship')"><div><div class="project-name" data-de="Raketenprototyp aus Edelstahl" data-en="Stainless Steel Rocket Prototype">Raketenprototyp aus Edelstahl</div><div class="project-meta">CAD · <span data-de="Schweißen" data-en="Welding">Schweißen</span> · <span data-de="Mechanik" data-en="Mechanics">Mechanik</span></div></div><div class="project-right"><span class="project-date-tag" data-de="Sep 2025" data-en="Sep 2025">Sep 2025</span><span class="project-arrow">→</span></div></div>
-        <div class="project-item" onclick="showDetail('literature')"><div><div class="project-name" data-de="KI-gestützter Literatur-Scanner" data-en="AI-Powered Literature Scanner">KI-gestützter Literatur-Scanner</div><div class="project-meta">Python · <span data-de="KI-APIs" data-en="AI APIs">KI-APIs</span> · <span data-de="Automatisierung" data-en="Automation">Automatisierung</span></div></div><div class="project-right"><span class="project-date-tag" data-de="Jul 2025" data-en="Jul 2025">Jul 2025</span><span class="project-arrow">→</span></div></div>
-        <div class="project-item" onclick="showDetail('greenhouse')"><div><div class="project-name" data-de="Indoor-Gewächshaus mit Schienensystem" data-en="Indoor Greenhouse with Rail System">Indoor-Gewächshaus mit Schienensystem</div><div class="project-meta"><span data-de="Additive Fertigung" data-en="Additive Manufacturing">Additive Fertigung</span> · <span data-de="Mechanik" data-en="Mechanics">Mechanik</span> · Raspberry Pi</div></div><div class="project-right"><span class="project-date-tag" data-de="Jul 2025" data-en="Jul 2025">Jul 2025</span><span class="project-arrow">→</span></div></div>
-        <div class="project-item" onclick="showDetail('n8n')"><div><div class="project-name" data-de="Automatisierte Kurzvideo-Generierung mit n8n" data-en="Automated Short Video Generation with n8n">Automatisierte Kurzvideo-Generierung mit n8n</div><div class="project-meta">n8n · <span data-de="KI" data-en="AI">KI</span> · <span data-de="Automatisierung" data-en="Automation">Automatisierung</span></div></div><div class="project-right"><span class="project-date-tag" data-de="Jun 2025" data-en="Jun 2025">Jun 2025</span><span class="project-arrow">→</span></div></div>
-        <div class="project-item" onclick="showDetail('3dprint')"><div><div class="project-name" data-de="3D-Druckprojekte mit Elegoo Neptune 4" data-en="3D Printing Projects with Elegoo Neptune 4">3D-Druckprojekte mit Elegoo Neptune 4</div><div class="project-meta"><span data-de="Additive Fertigung" data-en="Additive Manufacturing">Additive Fertigung</span> · CAD · FDM</div></div><div class="project-right"><span class="project-date-tag" data-de="Mai 2025" data-en="May 2025">Mai 2025</span><span class="project-arrow">→</span></div></div>
-        <div class="project-item" onclick="showDetail('garage-opener')"><div><div class="project-name" data-de="Smart-Garagenöffner mit Arduino" data-en="Smart Garage Opener with Arduino">Smart-Garagenöffner mit Arduino</div><div class="project-meta">Arduino · Embedded · IoT</div></div><div class="project-right"><span class="project-date-tag" data-de="Dez 2024" data-en="Dec 2024">Dez 2024</span><span class="project-arrow">→</span></div></div>
+      <ol class="flow" aria-label="Aufbau der Anlage">
+        <li><b data-en="Solar module">Solarmodul</b><span data-en="sunlight to direct current">Sonnenlicht zu Gleichstrom</span></li>
+        <li><b data-en="MPPT charge controller">MPPT-Laderegler</b><span data-en="charges the battery safely, logged by the Pi">lädt den Akku sicher, vom Pi ausgelesen</span></li>
+        <li><b data-en="LiFePO4 battery">LiFePO4-Akku</b><span data-en="stores the day's energy">speichert die Energie des Tages</span></li>
+        <li><b data-en="Outputs">Ausgänge</b><span data-en="USB-C today, 230 V later">heute USB-C, später 230 V</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ueber" aria-labelledby="about-title">
+  <div class="wrap about">
+    <div>
+      <h2 id="about-title" data-en="About me.">Über mich.</h2>
+      <p class="lead" data-en="I want to work in human spaceflight. Mechatronics gives me the base for it: mechanics, electronics and software in one system.">Ich will in die bemannte Raumfahrt. Die Mechatronik gibt mir die Grundlage dafür: Mechanik, Elektronik und Software in einem System.</p>
+      <div class="about-text">
+        <p data-en="At Jena-Optronik and at the DLR I saw how space hardware is made — designed, tested, documented. I approach my own projects the same way: measurement series instead of gut feeling, and work logs that include the dead ends.">Bei Jena-Optronik und am DLR habe ich erlebt, wie Raumfahrt-Hardware entsteht: konstruiert, getestet, dokumentiert. Genauso gehe ich meine eigenen Projekte an – mit Messreihen statt Bauchgefühl und mit Arbeitsprotokollen, in denen auch die Fehlwege stehen.</p>
+        <p data-en="Most of my projects start with a question I can't let go of, and end with something that runs on my desk. Away from the workbench I balance things out with strength training, running and mixed martial arts.">Die meisten meiner Projekte beginnen mit einer Frage, die mich nicht loslässt, und enden mit etwas, das auf meinem Tisch läuft. Ausgleich zur Werkbank finde ich beim Kraftsport, Laufen und Mixed Martial Arts.</p>
       </div>
-    </section>
-    <section class="animate-in d4" style="margin-bottom:2rem">
-      <div class="section-label" data-de="Werkstatt & Arbeitsplatz" data-en="Workshop & Workspace">Werkstatt & Arbeitsplatz</div>
-      <div class="werkstatt-link" onclick="showDetail('werkstatt')"><div><div class="werkstatt-title" data-de="Werkstatt & Tools" data-en="Workshop & Tools">Werkstatt & Tools</div><div class="werkstatt-sub" data-de="Ausrüstung, Maschinen & Setup" data-en="Equipment, machines & setup">Ausrüstung, Maschinen & Setup</div></div><span class="project-arrow">→</span></div>
-    </section>
-    <footer class="animate-in d5">
-      <span class="footer-status"><span class="status-dot"></span><span data-de="Angehender Raumfahrt-Ingenieur · Prototyping, Additive Fertigung, Embedded-Systeme & KI" data-en="Aspiring aerospace engineer · Prototyping, Additive Manufacturing, Embedded Systems & AI">Angehender Raumfahrt-Ingenieur · Prototyping, Additive Fertigung, Embedded-Systeme & KI</span></span>
-      <a class="footer-contact" href="mailto:lukas.karrer26@gmail.com">lukas.karrer26@gmail.com</a>
-    </footer>
+    </div>
+    <ol class="path">
+      <li><time>2023</time><div><b data-en="B.Eng. Mechatronics">B.Eng. Mechatronik</b><span>TH Rosenheim</span></div></li>
+      <li><time>02/2025</time><div><b data-en="Internship, design department">Praktikum Konstruktion</b><span data-en="Jena-Optronik, Jena · design in Creo, testing of a LiDAR system">Jena-Optronik, Jena · Konstruktion in Creo, Tests am LiDAR-System</span></div></li>
+      <li><time>10/2025</time><div><b data-en="Practical semester">Praxissemester</b><span data-en="DLR Institute of Space Research, Berlin · planetary sensor systems, Fabry-Pérot interferometers">DLR Institut für Weltraumforschung, Berlin · Planetare Sensorsysteme, Fabry-Pérot-Interferometer</span></div></li>
+      <li><time>09/2026</time><div><b data-en="Bachelor's thesis">Bachelorarbeit</b><span data-en="DLR Institute of Robotics and Mechatronics, Oberpfaffenhofen · robotic arm of the Lunar Rover Mini">DLR Institut für Robotik und Mechatronik, Oberpfaffenhofen · Roboterarm des Lunar Rover Mini</span></div></li>
+      <li><time>2027</time><div><b data-en="M.Sc. Aerospace Engineering">M.Sc. Luft- und Raumfahrttechnik</b><span>Universität Stuttgart</span></div></li>
+    </ol>
   </div>
+</section>
 
-  <!-- ═══ INSECT DEFENCE ═══ -->
-  <div id="detail-insect-defence" class="detail-view">
-    <div class="detail-top"><div class="back-link" onclick="goBack()"><span class="back-arrow">←</span> <span data-de="Zurück" data-en="Back">Zurück</span></div><div class="nav-buttons"><button class="nav-btn" onclick="toggleLang()" data-lang-btn>EN</button><button class="nav-btn" onclick="toggleTheme()" data-theme-btn>☾</button></div></div>
-    <div class="detail-header"><div class="detail-eyebrow" data-de="Projekt" data-en="Project">Projekt</div><h1 class="detail-title" data-de="Automatisiertes Insektenabwehr-System" data-en="Automated Insect Defense System">Automatisiertes Insektenabwehr-System</h1><span class="detail-date" data-de="Laufend" data-en="Ongoing">Laufend</span> <span class="badge-active" data-de="in Entwicklung" data-en="in progress">in Entwicklung</span></div>
-    <hr class="divider">
-    <div class="section"><div class="section-label" data-de="Ziel" data-en="Goal">Ziel</div><p data-de="Prototyp zur Erkennung und aktiven Abschreckung kleiner Fluginsekten in Innenräumen (z. B. Mücken), als sicheres Beispiel für ein Tracking-/Actuation-System." data-en="Prototype for detecting and actively deterring small flying insects indoors (e.g. mosquitoes), as a safe example of a tracking/actuation system.">Prototyp zur Erkennung und aktiven Abschreckung kleiner Fluginsekten in Innenräumen (z. B. Mücken), als sicheres Beispiel für ein Tracking-/Actuation-System.</p></div>
-    <div class="section"><div class="section-label" data-de="Umsetzung" data-en="Implementation">Umsetzung</div><ul><li><span data-de="Hardware: Raspberry Pi 3, Kamera, zwei Servomotoren, Laserpointer" data-en="Hardware: Raspberry Pi 3, camera, two servo motors, laser pointer">Hardware: Raspberry Pi 3, Kamera, zwei Servomotoren, Laserpointer</span></li><li><span data-de="Software: Objekt-/Bewegungserkennung mit OpenCV, Nachführung per Servos" data-en="Software: Object/motion detection with OpenCV, servo tracking">Software: Objekt-/Bewegungserkennung mit OpenCV, Nachführung per Servos</span></li><li><span data-de="Fokus: Bildverarbeitung, Regelung, Sicherheit (keine Waffenfunktion)" data-en="Focus: Image processing, control, safety (no weapon function)">Fokus: Bildverarbeitung, Regelung, Sicherheit (keine Waffenfunktion)</span></li></ul></div>
-    <div class="section"><div class="section-label" data-de="Technologien" data-en="Technologies">Technologien</div><div class="tags"><span class="tag">Raspberry Pi</span><span class="tag">OpenCV</span><span class="tag">Python</span><span class="tag">Servos</span><span class="tag" data-de="Additive Fertigung" data-en="Additive Manufacturing">Additive Fertigung</span></div></div>
-    <hr class="divider">
-    <div class="section"><div class="section-label" data-de="Ergebnis & Proof" data-en="Result & Proof">Ergebnis & Proof</div><div class="image-grid"><img src="assets/images/picture_defense.jpg" alt="Prototyp" loading="lazy"></div></div>
-    <hr class="divider">
-    <div class="detail-back-bottom" onclick="goBack()"><span class="back-arrow">←</span> <span data-de="Zurück zur Startseite" data-en="Back to home">Zurück zur Startseite</span></div>
+<section class="section mist" id="kontakt" aria-labelledby="contact-title">
+  <div class="wrap center">
+    <h2 id="contact-title" data-en="Let's talk.">Lass uns reden.</h2>
+    <p class="lead" data-en="Questions about a project, an internship or a collaboration — write to me.">Fragen zu einem Projekt, einem Praktikum oder einer Zusammenarbeit – schreib mir.</p>
+    <div class="links">
+      <a class="btn" href="mailto:lukas.karrer26@gmail.com">lukas.karrer26@gmail.com</a>
+    </div>
   </div>
+</section>
 
-  <!-- ═══ GARAGE OPENER ═══ -->
-  <div id="detail-garage-opener" class="detail-view">
-    <div class="detail-top"><div class="back-link" onclick="goBack()"><span class="back-arrow">←</span> <span data-de="Zurück" data-en="Back">Zurück</span></div><div class="nav-buttons"><button class="nav-btn" onclick="toggleLang()" data-lang-btn>EN</button><button class="nav-btn" onclick="toggleTheme()" data-theme-btn>☾</button></div></div>
-    <div class="detail-header"><div class="detail-eyebrow" data-de="Projekt" data-en="Project">Projekt</div><h1 class="detail-title" data-de="Smart-Garagenöffner mit Arduino" data-en="Smart Garage Opener with Arduino">Smart-Garagenöffner mit Arduino</h1><span class="detail-date" data-de="Dez 2024" data-en="Dec 2024">Dez 2024</span></div>
-    <hr class="divider">
-    <div class="section"><div class="section-label" data-de="Ziel" data-en="Goal">Ziel</div><p data-de="Entwicklung eines Systems zur Signalübertragung und -analyse für DIY-Smart-Home-Anwendungen." data-en="Development of a signal transmission and analysis system for DIY smart home applications.">Entwicklung eines Systems zur Signalübertragung und -analyse für DIY-Smart-Home-Anwendungen.</p></div>
-    <div class="section"><div class="section-label" data-de="Umsetzung" data-en="Implementation">Umsetzung</div><ul><li><span data-de="Hardware: Arduino, CC1101-Funkmodule, Antennen" data-en="Hardware: Arduino, CC1101 radio modules, antennas">Hardware: Arduino, CC1101-Funkmodule, Antennen</span></li><li><span data-de="Software: Arduino UNO, Universal Radio Hacker" data-en="Software: Arduino UNO, Universal Radio Hacker">Software: Arduino UNO, Universal Radio Hacker</span></li><li><span data-de="Integration: Lötarbeiten, Verkabelung, Smartphone als Steuerinterface" data-en="Integration: Soldering, wiring, smartphone as control interface">Integration: Lötarbeiten, Verkabelung, Smartphone als Steuerinterface</span></li><li><span data-de="Fokus: Funkkommunikation, Protokollanalyse, Zuverlässigkeit" data-en="Focus: Radio communication, protocol analysis, reliability">Fokus: Funkkommunikation, Protokollanalyse, Zuverlässigkeit</span></li></ul></div>
-    <div class="section"><div class="section-label" data-de="Technologien" data-en="Technologies">Technologien</div><div class="tags"><span class="tag">Arduino</span><span class="tag">CC1101</span><span class="tag" data-de="Löten" data-en="Soldering">Löten</span><span class="tag">Android</span></div></div>
-    <hr class="divider">
-    <div class="section"><div class="section-label" data-de="Ergebnis & Proof" data-en="Result & Proof">Ergebnis & Proof</div><div class="image-grid"><img src="assets/images/picture_GarageOpener.JPG" alt="Prototyp" loading="lazy"><img src="assets/images/screenshot_ArduinoUNO.PNG" alt="Code" loading="lazy"><img src="assets/images/screenshot_URH.PNG" alt="URH" loading="lazy"></div></div>
-    <hr class="divider">
-    <div class="detail-back-bottom" onclick="goBack()"><span class="back-arrow">←</span> <span data-de="Zurück zur Startseite" data-en="Back to home">Zurück zur Startseite</span></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Lukas Karrer</span>
+    <span><a href="_alt/" data-en="Previous version of this site">Vorherige Version dieser Seite</a></span>
   </div>
+</footer>
 
-  <!-- ═══ STARSHIP ═══ -->
-  <div id="detail-starship" class="detail-view">
-    <div class="detail-top"><div class="back-link" onclick="goBack()"><span class="back-arrow">←</span> <span data-de="Zurück" data-en="Back">Zurück</span></div><div class="nav-buttons"><button class="nav-btn" onclick="toggleLang()" data-lang-btn>EN</button><button class="nav-btn" onclick="toggleTheme()" data-theme-btn>☾</button></div></div>
-    <div class="detail-header"><div class="detail-eyebrow" data-de="Projekt" data-en="Project">Projekt</div><h1 class="detail-title" data-de="Raketenprototyp aus Edelstahl" data-en="Stainless Steel Rocket Prototype">Raketenprototyp aus Edelstahl</h1><span class="detail-date" data-de="Sep 2025" data-en="Sep 2025">Sep 2025</span></div>
-    <hr class="divider">
-    <div class="section"><div class="section-label" data-de="Ziel" data-en="Goal">Ziel</div><p data-de="Bau eines halben Meter großen Raketenprototyps, inspiriert vom Starship-Design, aus Edelstahl mittels WIG-Schweißen, Biegen und Drehen." data-en="Construction of a half-meter rocket prototype inspired by the Starship design, from stainless steel using TIG welding, bending, and turning.">Bau eines halben Meter großen Raketenprototyps, inspiriert vom Starship-Design, aus Edelstahl mittels WIG-Schweißen, Biegen und Drehen.</p></div>
-    <div class="section"><div class="section-label" data-de="Umsetzung" data-en="Implementation">Umsetzung</div><ul><li><span data-de="Material: Edelstahl" data-en="Material: Stainless steel">Material: Edelstahl</span></li><li><span data-de="Verfahren: WIG-Schweißen, Biegen und Drehen" data-en="Methods: TIG welding, bending, turning">Verfahren: WIG-Schweißen, Biegen und Drehen</span></li><li><span data-de="Konstruktion: halbmetriger Prototyp, detailgetreues Design" data-en="Construction: half-meter prototype, detail-faithful design">Konstruktion: halbmetriger Prototyp, detailgetreues Design</span></li><li><span data-de="Fokus: Präzision beim Schweißen, Stabilität der Struktur" data-en="Focus: Welding precision, structural stability">Fokus: Präzision beim Schweißen, Stabilität der Struktur</span></li></ul></div>
-    <div class="section"><div class="section-label" data-de="Technologien" data-en="Technologies">Technologien</div><div class="tags"><span class="tag" data-de="WIG-Schweißen" data-en="TIG Welding">WIG-Schweißen</span><span class="tag" data-de="Edelstahl" data-en="Stainless Steel">Edelstahl</span><span class="tag" data-de="Metallbearbeitung" data-en="Metalworking">Metallbearbeitung</span><span class="tag" data-de="Biegen" data-en="Bending">Biegen</span><span class="tag" data-de="Drehen" data-en="Turning">Drehen</span></div></div>
-    <hr class="divider">
-    <div class="section"><div class="section-label" data-de="Ergebnis & Proof" data-en="Result & Proof">Ergebnis & Proof</div><div class="image-grid"><img src="assets/images/picture_welding.JPG" alt="Schweißen" loading="lazy"><img src="assets/images/picture_halfdone.jpg" alt="Halbfertig" loading="lazy"><img src="assets/images/picture_starship_3.jpg" alt="Prototyp" loading="lazy"><img src="assets/images/picture_starship_4.JPG" alt="Fertig" loading="lazy"></div></div>
-    <hr class="divider">
-    <div class="detail-back-bottom" onclick="goBack()"><span class="back-arrow">←</span> <span data-de="Zurück zur Startseite" data-en="Back to home">Zurück zur Startseite</span></div>
+<!-- Projektdetails -->
+<dialog class="sheet" id="p-rakete" aria-labelledby="p-rakete-t">
+  <button class="sheet-close" type="button" data-close aria-label="Schließen">×</button>
+  <div class="sheet-in">
+    <p class="kicker" data-en="Metalwork · Sep 2025">Metallbau · Sep 2025</p>
+    <h2 id="p-rakete-t" data-en="Stainless-steel rocket prototype">Raketenprototyp aus Edelstahl</h2>
+    <p class="lead" data-en="A half-metre prototype in the style of Starship. The challenge: thin stainless sheet that has to stay straight and clean through TIG welding.">Ein halber Meter Prototyp im Stil von Starship. Die Herausforderung: dünnes Edelstahlblech, das beim WIG-Schweißen gerade und sauber bleiben muss.</p>
+    <div class="facts">
+      <div><h4 data-en="Build">Umsetzung</h4><ul><li data-en="Stainless steel, TIG-welded">Edelstahl, WIG-geschweißt</li><li data-en="Body bent, nose cone turned">Rumpf gebogen, Spitze gedreht</li><li data-en="Fins and stand welded on">Finnen und Ständer angeschweißt</li></ul></div>
+      <div><h4 data-en="Focus">Fokus</h4><p data-en="Precise seams on thin material and a structure that stays stable and true to the original.">Präzise Nähte auf dünnem Material und eine Struktur, die stabil und nah am Vorbild bleibt.</p></div>
+    </div>
+    <ul class="chips"><li data-en="TIG welding">WIG-Schweißen</li><li data-en="Stainless steel">Edelstahl</li><li data-en="Bending">Biegen</li><li data-en="Turning">Drehen</li></ul>
+    <div class="gallery">
+      <figure><img src="assets/img/t/rk-weld.jpg" decoding="async" alt="Beim WIG-Schweißen am Arbeitstisch" loading="lazy"><figcaption data-en="Welding">Beim Schweißen</figcaption></figure>
+      <figure><img src="assets/img/t/rk-half.jpg" decoding="async" alt="Halbfertiger Rumpf mit Blechen und Schweißbrenner" loading="lazy"><figcaption data-en="Half done">Halbfertig</figcaption></figure>
+      <figure><img src="assets/img/t/rk-3.jpg" decoding="async" alt="Rakete von hinten mit sechs Triebwerksrohren" loading="lazy"><figcaption data-en="Engine section">Triebwerksbereich</figcaption></figure>
+      <figure><img src="assets/img/t/rk-4.jpg" decoding="async" alt="Rakete stehend vor heller Wand" loading="lazy"><figcaption data-en="Finished">Fertig</figcaption></figure>
+    </div>
   </div>
+</dialog>
 
-  <!-- ═══ LITERATURE ═══ -->
-  <div id="detail-literature" class="detail-view">
-    <div class="detail-top"><div class="back-link" onclick="goBack()"><span class="back-arrow">←</span> <span data-de="Zurück" data-en="Back">Zurück</span></div><div class="nav-buttons"><button class="nav-btn" onclick="toggleLang()" data-lang-btn>EN</button><button class="nav-btn" onclick="toggleTheme()" data-theme-btn>☾</button></div></div>
-    <div class="detail-header"><div class="detail-eyebrow" data-de="Projekt" data-en="Project">Projekt</div><h1 class="detail-title" data-de="KI-gestützter Literatur-Scanner" data-en="AI-Powered Literature Scanner">KI-gestützter Literatur-Scanner</h1><span class="detail-date" data-de="Jul 2025" data-en="Jul 2025">Jul 2025</span></div>
-    <hr class="divider">
-    <div class="section"><div class="section-label" data-de="Ziel" data-en="Goal">Ziel</div><p data-de="Automatisierte tägliche Recherche und Relevanzbewertung wissenschaftlicher Artikel zu definierten Themen." data-en="Automated daily research and relevance scoring of scientific articles on defined topics.">Automatisierte tägliche Recherche und Relevanzbewertung wissenschaftlicher Artikel zu definierten Themen.</p></div>
-    <div class="section"><div class="section-label" data-de="Umsetzung" data-en="Implementation">Umsetzung</div><ul><li><span data-de="Python-Skript, läuft als GitHub Action (täglicher Workflow)" data-en="Python script running as GitHub Action (daily workflow)">Python-Skript, läuft als GitHub Action (täglicher Workflow)</span></li><li><span data-de="Scraping/Parsing von Open-Access-Plattformen, Filterlogik nach Metadaten" data-en="Scraping/parsing open-access platforms, metadata filtering">Scraping/Parsing von Open-Access-Plattformen, Filterlogik nach Metadaten</span></li><li><span data-de="Relevanzbewertung (Skala 0–10) via GPT-3.5-Turbo API" data-en="Relevance scoring (0–10) via GPT-3.5-Turbo API">Relevanzbewertung (Skala 0–10) via GPT-3.5-Turbo API</span></li><li><span data-de="Versand: täglich automatisch generierte E-Mail-Zusammenfassung" data-en="Delivery: daily auto-generated email summary">Versand: täglich automatisch generierte E-Mail-Zusammenfassung</span></li></ul></div>
-    <div class="section"><div class="section-label" data-de="Technologien" data-en="Technologies">Technologien</div><div class="tags"><span class="tag">Python</span><span class="tag">GitHub Actions</span><span class="tag">OpenAI GPT-3.5-Turbo</span><span class="tag">Mail-API</span></div></div>
-    <hr class="divider">
-    <div class="section"><div class="section-label" data-de="Ergebnis & Proof" data-en="Result & Proof">Ergebnis & Proof</div><div class="image-grid"><img src="assets/images/screenshot_github.PNG" alt="GitHub" loading="lazy"><img src="assets/images/screenshot_code.PNG" alt="Code" loading="lazy"><img src="assets/images/screenshot_email.PNG" alt="E-Mail" loading="lazy"></div></div>
-    <hr class="divider">
-    <div class="detail-back-bottom" onclick="goBack()"><span class="back-arrow">←</span> <span data-de="Zurück zur Startseite" data-en="Back to home">Zurück zur Startseite</span></div>
+<dialog class="sheet" id="p-scanner" aria-labelledby="p-scanner-t">
+  <button class="sheet-close" type="button" data-close aria-label="Schließen">×</button>
+  <div class="sheet-in">
+    <p class="kicker" data-en="Python · AI · Jul 2025">Python · KI · Jul 2025</p>
+    <h2 id="p-scanner-t" data-en="AI literature scanner">KI-Literatur-Scanner</h2>
+    <p class="lead" data-en="Keeping up with research takes time. This script does the daily search for me and only shows what is relevant.">Mit der Forschung Schritt halten kostet Zeit. Dieses Skript übernimmt die tägliche Suche und zeigt mir nur, was relevant ist.</p>
+    <div class="facts">
+      <div><h4 data-en="How it works">So funktioniert's</h4><ul><li data-en="Runs daily as a GitHub Action">Läuft täglich als GitHub Action</li><li data-en="Scrapes open-access platforms and filters by metadata">Liest Open-Access-Plattformen aus und filtert nach Metadaten</li><li data-en="GPT-3.5-Turbo rates each paper from 0 to 10">GPT-3.5-Turbo bewertet jedes Paper von 0 bis 10</li><li data-en="Sends a summary email every morning">Schickt jeden Morgen eine Zusammenfassung per Mail</li></ul></div>
+      <div><h4 data-en="Why">Warum</h4><p data-en="A small, fully automated pipeline that runs without a server of its own.">Eine kleine, voll automatische Pipeline, die ohne eigenen Server läuft.</p></div>
+    </div>
+    <ul class="chips"><li>Python</li><li>GitHub Actions</li><li>OpenAI API</li><li data-en="Mail API">Mail-API</li></ul>
+    <div class="gallery">
+      <figure><img class="fit" src="assets/img/t/ls-github.jpg" decoding="async" alt="GitHub-Actions-Übersicht des täglichen Workflows" loading="lazy"><figcaption data-en="Daily workflow">Täglicher Workflow</figcaption></figure>
+      <figure><img class="fit" src="assets/img/t/ls-code.jpg" decoding="async" alt="Ausschnitt aus dem Python-Code" loading="lazy"><figcaption data-en="Code">Code</figcaption></figure>
+      <figure><img class="fit" src="assets/img/t/ls-mail.jpg" decoding="async" alt="Zusammenfassungs-E-Mail" loading="lazy"><figcaption data-en="Daily email">Tägliche Mail</figcaption></figure>
+    </div>
   </div>
+</dialog>
 
-  <!-- ═══ GREENHOUSE ═══ -->
-  <div id="detail-greenhouse" class="detail-view">
-    <div class="detail-top"><div class="back-link" onclick="goBack()"><span class="back-arrow">←</span> <span data-de="Zurück" data-en="Back">Zurück</span></div><div class="nav-buttons"><button class="nav-btn" onclick="toggleLang()" data-lang-btn>EN</button><button class="nav-btn" onclick="toggleTheme()" data-theme-btn>☾</button></div></div>
-    <div class="detail-header"><div class="detail-eyebrow" data-de="Projekt" data-en="Project">Projekt</div><h1 class="detail-title" data-de="Indoor-Gewächshaus mit Schienensystem" data-en="Indoor Greenhouse with Rail System">Indoor-Gewächshaus mit Schienensystem</h1><span class="detail-date" data-de="Jul 2025" data-en="Jul 2025">Jul 2025</span></div>
-    <hr class="divider">
-    <div class="section"><div class="section-label" data-de="Idee & Ziel" data-en="Idea & Goal">Idee & Ziel</div><p data-de="Konzept für ein Indoor-Gewächshaus, bei dem Pflanzschalen auf 3D-gedruckten Schienen verschoben werden, um optimale Licht- und Temperaturbedingungen zu erreichen." data-en="Concept for an indoor greenhouse where plant trays slide on 3D-printed rails to achieve optimal light and temperature conditions.">Konzept für ein Indoor-Gewächshaus, bei dem Pflanzschalen auf 3D-gedruckten Schienen verschoben werden, um optimale Licht- und Temperaturbedingungen zu erreichen.</p></div>
-    <div class="section"><div class="section-label" data-de="Umsetzung" data-en="Implementation">Umsetzung</div><ul><li><span data-de="Mechanik: 3D-gedruckte Schienen und Wagen" data-en="Mechanics: 3D-printed rails and carts">Mechanik: 3D-gedruckte Schienen und Wagen</span></li><li><span data-de="Elektronik & Steuerung: Mikrocontroller für Motorsteuerung, Sensorik (Lux, Temp)" data-en="Electronics: Microcontroller for motor control, sensors (lux, temp)">Elektronik & Steuerung: Mikrocontroller für Motorsteuerung, Sensorik (Lux, Temp)</span></li><li><span data-de="Software: Konfigurations-App (JavaFX / Scene Builder)" data-en="Software: Configuration app (JavaFX / Scene Builder)">Software: Konfigurations-App (JavaFX / Scene Builder)</span></li></ul></div>
-    <div class="section"><div class="section-label" data-de="Technologien" data-en="Technologies">Technologien</div><div class="tags"><span class="tag" data-de="Additive Fertigung" data-en="Additive Manufacturing">Additive Fertigung</span><span class="tag">JavaFX</span><span class="tag" data-de="Mikrocontroller" data-en="Microcontroller">Mikrocontroller</span><span class="tag" data-de="Sensorik" data-en="Sensors">Sensorik</span></div></div>
-    <hr class="divider">
-    <div class="section"><div class="section-label" data-de="Ergebnis & Proof" data-en="Result & Proof">Ergebnis & Proof</div><p data-de="Nur Logik und GUI umgesetzt" data-en="Logic and GUI implemented only">Nur Logik und GUI umgesetzt</p><div class="image-grid"><img src="assets/images/screenshot_OOP_Verzechnis.PNG" alt="Code" loading="lazy"><img src="assets/images/screenshot_PAP.PNG" alt="PAP" loading="lazy"><img src="assets/images/screenshot_garden_GUI.png" alt="GUI" loading="lazy"></div></div>
-    <hr class="divider">
-    <div class="detail-back-bottom" onclick="goBack()"><span class="back-arrow">←</span> <span data-de="Zurück zur Startseite" data-en="Back to home">Zurück zur Startseite</span></div>
+<dialog class="sheet" id="p-garten" aria-labelledby="p-garten-t">
+  <button class="sheet-close" type="button" data-close aria-label="Schließen">×</button>
+  <div class="sheet-in">
+    <p class="kicker" data-en="Java · Mechanics · Jul 2025">Java · Mechanik · Jul 2025</p>
+    <h2 id="p-garten-t" data-en="Indoor greenhouse on rails">Indoor-Gewächshaus auf Schienen</h2>
+    <p class="lead" data-en="Concept for a greenhouse where plant trays move on 3D-printed rails to wherever light and temperature are best.">Konzept für ein Gewächshaus, in dem Pflanzschalen auf 3D-gedruckten Schienen dorthin fahren, wo Licht und Temperatur am besten sind.</p>
+    <div class="facts">
+      <div><h4 data-en="Planned system">Geplantes System</h4><ul><li data-en="3D-printed rails and carriages">3D-gedruckte Schienen und Wagen</li><li data-en="Microcontroller for the motors, lux and temperature sensors">Mikrocontroller für die Motoren, Lux- und Temperatursensoren</li><li data-en="Configuration app in JavaFX / Scene Builder">Konfigurations-App in JavaFX / Scene Builder</li></ul></div>
+      <div><h4 data-en="Status">Stand</h4><p data-en="Control logic and GUI are implemented; the mechanics are still a concept.">Steuerlogik und Oberfläche sind umgesetzt, die Mechanik ist noch Konzept.</p></div>
+    </div>
+    <ul class="chips"><li>Java</li><li>JavaFX</li><li data-en="Object-oriented design">Objektorientierter Entwurf</li><li data-en="Sensors">Sensorik</li></ul>
+    <div class="gallery">
+      <figure><img class="fit" src="assets/img/t/gh-gui.jpg" decoding="async" alt="JavaFX-Oberfläche" loading="lazy"><figcaption data-en="Interface">Oberfläche</figcaption></figure>
+      <figure><img class="fit" src="assets/img/t/gh-pap.jpg" decoding="async" alt="Programmablaufplan" loading="lazy"><figcaption data-en="Flow chart">Programmablaufplan</figcaption></figure>
+      <figure><img class="fit" src="assets/img/t/gh-oop.jpg" decoding="async" alt="Klassenstruktur" loading="lazy"><figcaption data-en="Class structure">Klassenstruktur</figcaption></figure>
+    </div>
   </div>
+</dialog>
 
-  <!-- ═══ N8N ═══ -->
-  <div id="detail-n8n" class="detail-view">
-    <div class="detail-top"><div class="back-link" onclick="goBack()"><span class="back-arrow">←</span> <span data-de="Zurück" data-en="Back">Zurück</span></div><div class="nav-buttons"><button class="nav-btn" onclick="toggleLang()" data-lang-btn>EN</button><button class="nav-btn" onclick="toggleTheme()" data-theme-btn>☾</button></div></div>
-    <div class="detail-header"><div class="detail-eyebrow" data-de="Projekt" data-en="Project">Projekt</div><h1 class="detail-title" data-de="Automatisierte Kurzvideo-Generierung mit n8n" data-en="Automated Short Video Generation with n8n">Automatisierte Kurzvideo-Generierung mit n8n</h1><span class="detail-date" data-de="Jun 2025" data-en="Jun 2025">Jun 2025</span></div>
-    <hr class="divider">
-    <div class="section"><div class="section-label" data-de="Ziel" data-en="Goal">Ziel</div><p data-de="Automatisierte Erstellung von Shortvideos aus Texteingaben – Workflow für Content-Automation." data-en="Automated creation of short videos from text inputs – content automation workflow.">Automatisierte Erstellung von Shortvideos aus Texteingaben – Workflow für Content-Automation.</p></div>
-    <div class="section"><div class="section-label" data-de="Umsetzung" data-en="Implementation">Umsetzung</div><ul><li><span data-de="Workflow: n8n auf Hetzner-Server gehostet" data-en="Workflow: n8n hosted on Hetzner server">Workflow: n8n auf Hetzner-Server gehostet</span></li><li><span data-de="KI-Integration: Seedance AI (Szenen & Voiceovers)" data-en="AI integration: Seedance AI (scenes & voiceovers)">KI-Integration: Seedance AI (Szenen & Voiceovers)</span></li><li><span data-de="Automatisierung: Textprompt (GPT-4o mini) → Videoerstellung" data-en="Automation: Text prompt (GPT-4o mini) → video creation">Automatisierung: Textprompt (GPT-4o mini) → Videoerstellung</span></li><li><span data-de="Output: fertige Shortvideos inkl. Upload" data-en="Output: finished short videos incl. upload">Output: fertige Shortvideos inkl. Upload</span></li></ul></div>
-    <div class="section"><div class="section-label" data-de="Technologien" data-en="Technologies">Technologien</div><div class="tags"><span class="tag">n8n</span><span class="tag">Seedance AI</span><span class="tag">Hetzner Cloud</span><span class="tag">Python</span><span class="tag">OpenAI</span><span class="tag">ReplicateAI</span></div></div>
-    <hr class="divider">
-    <div class="section"><div class="section-label" data-de="Ergebnis & Proof" data-en="Result & Proof">Ergebnis & Proof</div><div class="image-grid"><img src="assets/images/picture_n8n_1.PNG" alt="n8n 1" loading="lazy"><img src="assets/images/picture_n8n_2.PNG" alt="n8n 2" loading="lazy"></div><a class="ext-link" href="https://www.youtube.com/@historyfactsguy" target="_blank" rel="noopener">→ <span data-de="YouTube-Kanal mit Demo-Videos" data-en="YouTube channel with demo videos">YouTube-Kanal mit Demo-Videos</span></a></div>
-    <hr class="divider">
-    <div class="detail-back-bottom" onclick="goBack()"><span class="back-arrow">←</span> <span data-de="Zurück zur Startseite" data-en="Back to home">Zurück zur Startseite</span></div>
+<dialog class="sheet" id="p-n8n" aria-labelledby="p-n8n-t">
+  <button class="sheet-close" type="button" data-close aria-label="Schließen">×</button>
+  <div class="sheet-in">
+    <p class="kicker" data-en="n8n · AI · Jun 2025">n8n · KI · Jun 2025</p>
+    <h2 id="p-n8n-t" data-en="Automated short videos">Automatische Kurzvideos</h2>
+    <p class="lead" data-en="From one line of text to a finished video: script, scenes, voice-over and upload run as a single workflow.">Von einer Zeile Text zum fertigen Video: Skript, Szenen, Sprecher und Upload laufen als ein Workflow.</p>
+    <div class="facts">
+      <div><h4 data-en="Pipeline">Ablauf</h4><ul><li data-en="n8n self-hosted on a Hetzner server">n8n selbst gehostet auf einem Hetzner-Server</li><li data-en="GPT-4o mini writes the script from the prompt">GPT-4o mini schreibt das Skript aus dem Prompt</li><li data-en="Seedance AI creates scenes and voice-over">Seedance AI erzeugt Szenen und Sprecher</li><li data-en="Finished video is uploaded automatically">Das fertige Video wird automatisch hochgeladen</li></ul></div>
+      <div><h4 data-en="Result">Ergebnis</h4><p data-en="Demo videos are on the YouTube channel.">Demo-Videos laufen auf dem YouTube-Kanal.</p><p style="margin-top:10px"><a class="more" href="https://www.youtube.com/@historyfactsguy" data-en="Open channel">Kanal öffnen</a></p></div>
+    </div>
+    <ul class="chips"><li>n8n</li><li>Hetzner Cloud</li><li>OpenAI</li><li>Seedance AI</li><li>Replicate</li></ul>
+    <div class="gallery">
+      <figure><img class="fit" src="assets/img/t/n8n-1.jpg" decoding="async" alt="n8n-Workflow, Teil 1" loading="lazy"></figure>
+      <figure><img class="fit" src="assets/img/t/n8n-2.jpg" decoding="async" alt="n8n-Workflow, Teil 2" loading="lazy"></figure>
+    </div>
   </div>
+</dialog>
 
-  <!-- ═══ 3D PRINT ═══ -->
-  <div id="detail-3dprint" class="detail-view">
-    <div class="detail-top"><div class="back-link" onclick="goBack()"><span class="back-arrow">←</span> <span data-de="Zurück" data-en="Back">Zurück</span></div><div class="nav-buttons"><button class="nav-btn" onclick="toggleLang()" data-lang-btn>EN</button><button class="nav-btn" onclick="toggleTheme()" data-theme-btn>☾</button></div></div>
-    <div class="detail-header"><div class="detail-eyebrow" data-de="Projekt" data-en="Project">Projekt</div><h1 class="detail-title" data-de="3D-Druckprojekte mit Elegoo Neptune 4" data-en="3D Printing Projects with Elegoo Neptune 4">3D-Druckprojekte mit Elegoo Neptune 4</h1><span class="detail-date" data-de="Mai 2025" data-en="May 2025">Mai 2025</span></div>
-    <hr class="divider">
-    <div class="section"><div class="section-label" data-de="Ziel" data-en="Goal">Ziel</div><p data-de="Design und Fertigung von individuellen 3D-Teilen für den praktischen Einsatz: Türgriff für verschiebbares Mückengitter und Adapter für Wasserhahnverlängerung." data-en="Design and manufacture of custom 3D parts: door handle for sliding mosquito screen and faucet adapter.">Design und Fertigung von individuellen 3D-Teilen für den praktischen Einsatz: Türgriff für verschiebbares Mückengitter und Adapter für Wasserhahnverlängerung.</p></div>
-    <div class="section"><div class="section-label" data-de="Umsetzung" data-en="Implementation">Umsetzung</div><ul><li><span data-de="CAD-Design: Solid Edge 2025" data-en="CAD design: Solid Edge 2025">CAD-Design: Solid Edge 2025</span></li><li><span data-de="Druckmaterial: PETG / PLA" data-en="Print material: PETG / PLA">Druckmaterial: PETG / PLA</span></li><li><span data-de="Slicer: Orca Slicer" data-en="Slicer: Orca Slicer">Slicer: Orca Slicer</span></li><li><span data-de="Drucker: Elegoo Neptune 4" data-en="Printer: Elegoo Neptune 4">Drucker: Elegoo Neptune 4</span></li><li><span data-de="Fokus: Maßgenauigkeit, Passform, Funktionsfähigkeit" data-en="Focus: Dimensional accuracy, fit, functionality">Fokus: Maßgenauigkeit, Passform, Funktionsfähigkeit</span></li></ul></div>
-    <div class="section"><div class="section-label" data-de="Technologien" data-en="Technologies">Technologien</div><div class="tags"><span class="tag" data-de="Additive Fertigung" data-en="Additive Manufacturing">Additive Fertigung</span><span class="tag">Solid Edge 2025</span><span class="tag">PETG/PLA</span><span class="tag">Orca Slicer</span></div></div>
-    <hr class="divider">
-    <div class="section"><div class="section-label" data-de="Ergebnis & Proof" data-en="Result & Proof">Ergebnis & Proof</div><div class="image-label" data-de="Türgriff für Mückengitter" data-en="Door handle for mosquito screen">Türgriff für Mückengitter</div><div class="image-pair"><img src="assets/images/screenshot_Griff_CAD.PNG" alt="CAD" loading="lazy"><img src="assets/images/screenshot_Griff.JPG" alt="Fertig" loading="lazy"></div><div class="image-label" data-de="Wasserhahn-Adapter" data-en="Faucet adapter">Wasserhahn-Adapter</div><div class="image-pair"><img src="assets/images/screenshot_Wasserhahn-Adapter_CAD.PNG" alt="CAD" loading="lazy"><img src="assets/images/screenshot_Wasserhahn-Adapter.JPG" alt="Fertig" loading="lazy"></div></div>
-    <hr class="divider">
-    <div class="detail-back-bottom" onclick="goBack()"><span class="back-arrow">←</span> <span data-de="Zurück zur Startseite" data-en="Back to home">Zurück zur Startseite</span></div>
+<dialog class="sheet" id="p-druck" aria-labelledby="p-druck-t">
+  <button class="sheet-close" type="button" data-close aria-label="Schließen">×</button>
+  <div class="sheet-in">
+    <p class="kicker" data-en="CAD · 3D printing · May 2025">CAD · 3D-Druck · Mai 2025</p>
+    <h2 id="p-druck-t" data-en="Functional 3D-printed parts">3D-gedruckte Funktionsteile</h2>
+    <p class="lead" data-en="Parts for everyday problems at home, where fit and strength matter more than looks.">Teile für Alltagsprobleme zu Hause, bei denen Passform und Festigkeit wichtiger sind als Optik.</p>
+    <div class="facts">
+      <div><h4 data-en="Workflow">Ablauf</h4><ul><li data-en="CAD in Solid Edge 2025">CAD in Solid Edge 2025</li><li data-en="Slicing in Orca Slicer">Slicen in Orca Slicer</li><li data-en="Printed in PETG and PLA on an Elegoo Neptune 4">Gedruckt in PETG und PLA auf einem Elegoo Neptune 4</li></ul></div>
+      <div><h4 data-en="Focus">Fokus</h4><p data-en="Dimensional accuracy and a fit that works the first time.">Maßhaltigkeit und eine Passform, die beim ersten Mal sitzt.</p></div>
+    </div>
+    <ul class="chips"><li>Solid Edge</li><li>Orca Slicer</li><li>PETG</li><li>PLA</li></ul>
+    <div class="gallery">
+      <figure><img class="fit" src="assets/img/t/p3-griff-cad.jpg" decoding="async" alt="CAD-Modell des Griffs" loading="lazy"><figcaption data-en="Handle, CAD">Griff, CAD</figcaption></figure>
+      <figure><img src="assets/img/t/p3-griff.jpg" decoding="async" alt="Gedruckter Griff montiert" loading="lazy"><figcaption data-en="Handle, mounted">Griff, montiert</figcaption></figure>
+      <figure><img class="fit" src="assets/img/t/p3-hahn-cad.jpg" decoding="async" alt="CAD-Modell des Wasserhahn-Adapters" loading="lazy"><figcaption data-en="Tap adapter, CAD">Wasserhahn-Adapter, CAD</figcaption></figure>
+      <figure><img src="assets/img/t/p3-hahn.jpg" decoding="async" alt="Gedruckter Wasserhahn-Adapter" loading="lazy"><figcaption data-en="Tap adapter, printed">Wasserhahn-Adapter, gedruckt</figcaption></figure>
+    </div>
   </div>
+</dialog>
 
-  <!-- ═══ WERKSTATT ═══ -->
-  <div id="detail-werkstatt" class="detail-view">
-    <div class="detail-top"><div class="back-link" onclick="goBack()"><span class="back-arrow">←</span> <span data-de="Zurück" data-en="Back">Zurück</span></div><div class="nav-buttons"><button class="nav-btn" onclick="toggleLang()" data-lang-btn>EN</button><button class="nav-btn" onclick="toggleTheme()" data-theme-btn>☾</button></div></div>
-    <div class="detail-header"><div class="detail-eyebrow" data-de="Werkstatt" data-en="Workshop">Werkstatt</div><h1 class="detail-title" data-de="Werkstatt & Tools" data-en="Workshop & Tools">Werkstatt & Tools</h1></div>
-    <hr class="divider">
-    <div class="section"><div class="section-label" data-de="Ausstattung" data-en="Equipment">Ausstattung</div><p data-de="Hier ein kurzer Überblick über meine Ausstattung, mit der ich die Projekte baue:" data-en="A quick overview of my equipment used to build the projects:">Hier ein kurzer Überblick über meine Ausstattung, mit der ich die Projekte baue:</p><ul style="margin-top:.6rem"><li><span data-de="PC-Arbeitsstation (CAD + Simulation + Coding)" data-en="PC workstation (CAD + simulation + coding)">PC-Arbeitsstation (CAD + Simulation + Coding)</span></li><li><span data-de="3D-Drucker (FDM) + Ersatzfilamente" data-en="3D printer (FDM) + spare filaments">3D-Drucker (FDM) + Ersatzfilamente</span></li><li><span data-de="Lötstation" data-en="Soldering station">Lötstation</span></li><li><span data-de="Raspberry Pi / Arduino Boards" data-en="Raspberry Pi / Arduino boards">Raspberry Pi / Arduino Boards</span></li></ul></div>
-    <hr class="divider">
-    <div class="section"><div class="image-grid"><div class="image-label" data-de="PC-Arbeitsstation" data-en="PC workstation" style="margin-top:0">PC-Arbeitsstation</div><img src="assets/images/workshop_far.JPG" alt="Werkstatt" loading="lazy"><div class="image-label" data-de="Nahaufnahme Setup" data-en="Close-up setup">Nahaufnahme Setup</div><img src="assets/images/workshop_closeup.JPG" alt="Nahaufnahme" loading="lazy"><div class="image-label" data-de="Lötplatz" data-en="Soldering station">Lötplatz</div><img src="assets/images/soldering.JPG" alt="Lötplatz" loading="lazy"><div class="image-label" data-de="3D-Drucker" data-en="3D printer">3D-Drucker</div><img src="assets/images/3dprinter.jpg" alt="3D-Drucker" loading="lazy"></div></div>
-    <hr class="divider">
-    <div class="detail-back-bottom" onclick="goBack()"><span class="back-arrow">←</span> <span data-de="Zurück zur Startseite" data-en="Back to home">Zurück zur Startseite</span></div>
+<dialog class="sheet" id="p-garage" aria-labelledby="p-garage-t">
+  <button class="sheet-close" type="button" data-close aria-label="Schließen">×</button>
+  <div class="sheet-in">
+    <p class="kicker" data-en="Arduino · Radio · Dec 2024">Arduino · Funk · Dez 2024</p>
+    <h2 id="p-garage-t" data-en="Smart garage opener">Smarter Garagenöffner</h2>
+    <p class="lead" data-en="Transmitting and analysing radio signals for a DIY smart-home setup, with the phone as the remote.">Funksignale für ein DIY-Smart-Home übertragen und analysieren, mit dem Handy als Fernbedienung.</p>
+    <div class="facts">
+      <div><h4 data-en="Build">Umsetzung</h4><ul><li data-en="Arduino Uno with CC1101 radio module and antenna">Arduino Uno mit CC1101-Funkmodul und Antenne</li><li data-en="Signal analysed in Universal Radio Hacker">Signal in Universal Radio Hacker analysiert</li><li data-en="Soldered and wired by hand, Android as interface">Selbst gelötet und verkabelt, Android als Bedienung</li></ul></div>
+      <div><h4 data-en="Focus">Fokus</h4><p data-en="Radio communication, protocol analysis and reliability.">Funkkommunikation, Protokollanalyse und Zuverlässigkeit.</p></div>
+    </div>
+    <ul class="chips"><li>Arduino</li><li>CC1101</li><li>Universal Radio Hacker</li><li data-en="Soldering">Löten</li><li>Android</li></ul>
+    <div class="gallery">
+      <figure><img src="assets/img/t/go-1.jpg" decoding="async" alt="Aufbau mit Arduino und Funkmodul" loading="lazy"><figcaption data-en="Hardware">Hardware</figcaption></figure>
+      <figure><img class="fit" src="assets/img/t/go-urh.jpg" decoding="async" alt="Signal in Universal Radio Hacker" loading="lazy"><figcaption data-en="Signal analysis">Signalanalyse</figcaption></figure>
+      <figure><img class="fit" src="assets/img/t/go-code.jpg" decoding="async" alt="Arduino-Code" loading="lazy"><figcaption data-en="Arduino code">Arduino-Code</figcaption></figure>
+    </div>
   </div>
+</dialog>
 
-</div>
-
-<script>
-  let lang = 'de';
-  function toggleTheme() {
-    document.body.classList.toggle('dark');
-    var sym = document.body.classList.contains('dark') ? '○' : '☾';
-    document.querySelectorAll('[data-theme-btn], #theme-btn').forEach(function(b){b.textContent=sym;});
-  }
-  function toggleLang() {
-    lang = lang === 'de' ? 'en' : 'de';
-    var label = lang === 'de' ? 'EN' : 'DE';
-    document.querySelectorAll('[data-lang-btn], #lang-btn').forEach(function(b){b.textContent=label;});
-    document.querySelectorAll('[data-de]').forEach(el => el.textContent = el.getAttribute('data-' + lang));
-  }
-  function showDetail(id) {
-    document.getElementById('start-view').classList.add('hidden');
-    document.querySelectorAll('.detail-view').forEach(v => v.classList.remove('active'));
-    document.getElementById('detail-' + id).classList.add('active');
-    window.scrollTo({top: 0, behavior: 'instant'});
-    document.querySelectorAll('[data-de]').forEach(el => el.textContent = el.getAttribute('data-' + lang));
-  }
-  function goBack() {
-    document.querySelectorAll('.detail-view').forEach(v => v.classList.remove('active'));
-    document.getElementById('start-view').classList.remove('hidden');
-    window.scrollTo({top: 0, behavior: 'instant'});
-  }
-</script>
+<script src="assets/js/site.js"></script>
+<script data-goatcounter="https://lukaskarrer.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
