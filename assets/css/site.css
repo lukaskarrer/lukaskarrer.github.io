@@ -313,3 +313,5 @@ dialog.sheet .gallery img { content-visibility: auto; }
   .stats { gap: 16px; }
 }
 html.modal-open .nav { -webkit-backdrop-filter: none; backdrop-filter: none; }
+.video-note { margin-top: 14px; font-size: 13px; line-height: 1.45; color: var(--night-ink-2); max-width: 60em; }
+.center .video-note, .stage .video-note { text-align: center; margin-inline: auto; }
