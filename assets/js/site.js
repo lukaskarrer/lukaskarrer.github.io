@@ -18,7 +18,8 @@
   }
   const titleEn = document.querySelector('meta[name="title-en"]');
   if (titleEn) titleEn.dataset.de = document.title;
-  if (store.get('lang') === 'en') setLang('en');
+  /* Standard: Englisch, außer jemand hat bewusst Deutsch gewählt */
+  if (store.get('lang') !== 'de') setLang('en');
   toggle && toggle.addEventListener('click', () => setLang(document.documentElement.lang === 'en' ? 'de' : 'en'));
 
   /* Menü auf dem Handy */
@@ -41,17 +42,24 @@
       document.documentElement.classList.add('modal-open');
       d.showModal();
       d.scrollTop = 0;
+      /* Eigener Verlaufseintrag: Zurück (Handy-Geste/Browser) schließt nur das Fenster */
+      try { history.pushState({ sheet: d.id }, ''); } catch (e) {}
       /* Aufruf eines Projekts im Zähler vermerken (keine Cookies) */
       try { window.goatcounter && window.goatcounter.count({ path: 'projekt/' + btn.dataset.open.replace('p-', ''), title: d.querySelector('h2').textContent, event: true }); } catch (e) {}
     });
   });
   document.querySelectorAll('dialog.sheet').forEach(d => {
     d.addEventListener('click', e => { if (e.target === d) d.close(); });
-    d.querySelector('[data-close]').addEventListener('click', () => d.close());
+    d.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => d.close()));
     d.addEventListener('close', () => {
       document.documentElement.classList.remove('modal-open');
+      if (history.state && history.state.sheet === d.id) history.back();
       lastTrigger && lastTrigger.focus({ preventScroll: true });
     });
+  });
+
+  window.addEventListener('popstate', () => {
+    document.querySelectorAll('dialog.sheet[open]').forEach(d => d.close());
   });
 
   /* Videos nur abspielen, wenn sichtbar; Laserlinie einmal zeichnen */

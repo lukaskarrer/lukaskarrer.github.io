@@ -315,3 +315,12 @@ dialog.sheet .gallery img { content-visibility: auto; }
 html.modal-open .nav { -webkit-backdrop-filter: none; backdrop-filter: none; }
 .video-note { margin-top: 14px; font-size: 13px; line-height: 1.45; color: var(--night-ink-2); max-width: 60em; }
 .center .video-note, .stage .video-note { text-align: center; margin-inline: auto; }
+
+/* Zurück-Button am Ende jedes Projektfensters */
+.sheet-end { margin-top: 40px; text-align: center; }
+.sheet-end .btn { border: 0; cursor: pointer; font-family: inherit; }
+/* Foto vom gedruckten V2-Gehäuse */
+.photo-row { grid-template-columns: 1fr 1.2fr; }
+.screen.photo { margin: 0; background: #f2f2f2; }
+.photo-row .screen.photo img { aspect-ratio: 4/5; object-fit: cover; }
+@media (max-width: 820px) { .photo-row { grid-template-columns: 1fr; } }
