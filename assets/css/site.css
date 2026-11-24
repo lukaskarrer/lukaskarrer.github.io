@@ -324,3 +324,20 @@ html.modal-open .nav { -webkit-backdrop-filter: none; backdrop-filter: none; }
 .screen.photo { margin: 0; background: #f2f2f2; }
 .photo-row .screen.photo img { aspect-ratio: 4/5; object-fit: cover; }
 @media (max-width: 820px) { .photo-row { grid-template-columns: 1fr; } }
+/* Kleine Projekte: vier in einer Reihe, Rakete und Garagenöffner bleiben groß */
+.tiles { grid-template-columns: repeat(4, 1fr); }
+.tile.wide { grid-column: 1 / -1; }
+.tile:not(.wide) .tile-body { padding: 22px 22px 0; }
+.tile:not(.wide) .tile-meta { font-size: 13px; margin-bottom: 6px; }
+.tile:not(.wide) h3 { font-size: 20px; }
+.tile:not(.wide) p.desc { font-size: 15px; margin-top: 8px; }
+.tile:not(.wide) .more { font-size: 15px; margin-top: 10px; }
+.tile:not(.wide) figure { margin: 18px 0 0; padding: 0 22px 22px; }
+.tile:not(.wide) figure img { aspect-ratio: 4/3; border-radius: var(--radius-s); }
+/* Screenshots ganz zeigen, auf einer hellgrauen Fläche in der Karte */
+.tile.contain figure { padding: 0 22px 22px; }
+.tile.contain figure img { object-fit: contain; background: #e8e8ed; padding: 12px; border-radius: var(--radius-s); box-shadow: none; }
+@media (max-width: 1100px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .tiles { grid-template-columns: 1fr; } }
+/* Kein blinkender Text-Cursor beim Klicken in Text; Markieren und Kopieren geht weiter */
+html { caret-color: transparent; }
